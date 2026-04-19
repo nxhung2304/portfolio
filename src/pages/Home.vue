@@ -6,6 +6,7 @@
 </template>
 
 <script setup lang="ts">
+// TODO: Add hero section, featured projects, and call-to-action
 </script>
 
 <style scoped>

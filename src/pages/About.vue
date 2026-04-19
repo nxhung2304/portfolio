@@ -6,6 +6,7 @@
 </template>
 
 <script setup lang="ts">
+// TODO: Add biography, skills, experience, and achievements
 </script>
 
 <style scoped>

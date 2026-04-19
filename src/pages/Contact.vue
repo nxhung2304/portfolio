@@ -6,6 +6,7 @@
 </template>
 
 <script setup lang="ts">
+// TODO: Add contact form with validation and email submission
 </script>
 
 <style scoped>

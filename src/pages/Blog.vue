@@ -6,6 +6,7 @@
 </template>
 
 <script setup lang="ts">
+// TODO: Fetch and display blog posts, add pagination and filtering
 </script>
 
 <style scoped>
