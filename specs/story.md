@@ -45,6 +45,8 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 
 ## Phase 2: About Page
 
+> Design reference: [`specs/design/about.jsx`](design/about.jsx)
+
 ### Task 2.1: About page - Bio & Timeline
 - [ ] Create About.vue page at `/about` route
 - [ ] Build bio section with personal introduction
@@ -68,6 +70,8 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 ---
 
 ## Phase 3: Projects Feature
+
+> Design reference: [`specs/design/project.jsx`](design/project.jsx) — includes list page (grid/list view, tag filter) and detail page
 
 ### Task 3.1: Projects list - Grid layout & fetching
 - [ ] Create ProjectList.vue page at `/projects` route
@@ -108,6 +112,8 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 
 ## Phase 4: Blog Feature
 
+> Design reference: [`specs/design/blog.jsx`](design/blog.jsx) — includes list page (search, tag filter, featured post) and detail page (markdown rendering, reading progress, share, related posts)
+
 ### Task 4.1: Blog list - Fetching & pagination
 - [ ] Create BlogList.vue page at `/blog` route
 - [ ] Fetch published posts (published=true) from Supabase
@@ -146,6 +152,8 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 
 ## Phase 5: Home Page
 
+> Design reference: [`specs/design/home.jsx`](design/home.jsx) — hero with animated canvas + terminal text, featured projects grid, latest posts list, tech stack badges
+
 ### Task 5.1: Home page - Hero section
 - [ ] Create Home.vue page at `/` route
 - [ ] Build hero section with: name, tagline, avatar, CTA buttons
@@ -175,6 +183,8 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 ---
 
 ## Phase 6: Contact Page
+
+> Design reference: [`specs/design/contact.jsx`](design/contact.jsx) — contact form with validation + success state, social links panel, response time indicator, CTA banner
 
 ### Task 6.1: Contact form - HTML & validation
 - [ ] Create Contact.vue page at `/contact` route
