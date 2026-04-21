@@ -8,7 +8,7 @@
 
         <nav class="hidden md:flex items-center gap-1">
           <RouterLink
-            v-for="link in navLinks"
+            v-for="link in NAV_LINKS"
             :key="link.to"
             :to="link.to"
             class="px-4 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-indigo-600 transition-colors"
@@ -27,12 +27,5 @@
 
 <script setup lang="ts">
 import Navbar from './Navbar.vue'
-
-const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/blog', label: 'Blog' },
-  { to: '/contact', label: 'Contact' },
-]
+import { NAV_LINKS } from '../constants/nav'
 </script>

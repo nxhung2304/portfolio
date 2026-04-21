@@ -8,7 +8,7 @@
 
         <nav class="flex items-center gap-6">
           <RouterLink
-            v-for="link in navLinks"
+            v-for="link in NAV_LINKS"
             :key="link.to"
             :to="link.to"
             class="text-sm text-gray-500 hover:text-indigo-600 transition-colors"
@@ -22,13 +22,7 @@
 </template>
 
 <script setup lang="ts">
-const currentYear = new Date().getFullYear()
+import { NAV_LINKS } from '../constants/nav'
 
-const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/blog', label: 'Blog' },
-  { to: '/contact', label: 'Contact' },
-]
+const currentYear = new Date().getFullYear()
 </script>

@@ -16,7 +16,7 @@
     <div v-if="isOpen" class="absolute top-16 left-0 right-0 bg-white shadow-lg border-t border-gray-100 z-50">
       <nav class="flex flex-col px-4 py-3 space-y-1">
         <RouterLink
-          v-for="link in navLinks"
+          v-for="link in NAV_LINKS"
           :key="link.to"
           :to="link.to"
           class="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
@@ -32,14 +32,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
-const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/blog', label: 'Blog' },
-  { to: '/contact', label: 'Contact' },
-]
+import { NAV_LINKS } from '../constants/nav'
 
 const isOpen = ref(false)
 
