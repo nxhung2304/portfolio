@@ -7,39 +7,39 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 ## Phase 1: Project Setup & Infrastructure
 
 ### Task 1.1: Vue 3 + Vite + Tailwind CSS setup
-- [ ] Initialize Vue 3 + Vite project
-- [ ] Configure Tailwind CSS with proper build
-- [ ] Add Vue Router with route definitions (7 routes)
-- [ ] Create basic project structure (src/components, src/pages, src/lib)
-- [ ] Verify `npm run dev` works locally
+- [x] Initialize Vue 3 + Vite project
+- [x] Configure Tailwind CSS with proper build
+- [x] Add Vue Router with route definitions (7 routes)
+- [x] Create basic project structure (src/components, src/pages, src/lib)
+- [x] Verify `npm run dev` works locally
 
 ### Task 1.2: Supabase project & database schema
-- [ ] Create Supabase project
-- [ ] Create `projects` table (id, title, slug, description, content, thumbnail_url, tags, github_url, demo_url, featured, created_at)
-- [ ] Create `posts` table (id, title, slug, excerpt, content, cover_image_url, tags, published, published_at, created_at)
-- [ ] Create `contacts` table (id, name, email, message, created_at)
-- [ ] Setup RLS policies for all tables (SELECT public, INSERT/UPDATE/DELETE auth for projects/posts; INSERT public, SELECT auth for contacts)
+- [x] Create Supabase project
+- [x] Create `projects` table (id, title, slug, description, content, thumbnail_url, tags, github_url, demo_url, featured, created_at)
+- [x] Create `posts` table (id, title, slug, excerpt, content, cover_image_url, tags, published, published_at, created_at)
+- [x] Create `contacts` table (id, name, email, message, created_at)
+- [x] Setup RLS policies for all tables (SELECT public, INSERT/UPDATE/DELETE auth for projects/posts; INSERT public, SELECT auth for contacts)
 
 ### Task 1.3: Supabase client & TypeScript setup
-- [ ] Create `src/lib/supabase.ts` client configuration
-- [ ] Generate TypeScript types from Supabase schema
-- [ ] Setup environment variables (.env.local)
-- [ ] Test Supabase connection from Vue component
+- [x] Create `src/lib/supabase.ts` client configuration
+- [x] Generate TypeScript types from Supabase schema
+- [x] Setup environment variables (.env.local)
+- [x] Test Supabase connection from Vue component
 
 ### Task 1.4: Shared layout & routing
-- [ ] Create Header component (logo, nav, links)
-- [ ] Create Navbar component (mobile-responsive)
-- [ ] Create Footer component (copyright, links)
-- [ ] Create Layout wrapper component
-- [ ] Apply layout to all 7 routes
-- [ ] Verify routing works (navigate between pages)
+- [x] Create Header component (logo, nav, links)
+- [x] Create Navbar component (mobile-responsive)
+- [x] Create Footer component (copyright, links)
+- [x] Create Layout wrapper component
+- [x] Apply layout to all 7 routes
+- [x] Verify routing works (navigate between pages)
 
 ### Task 1.5: Project documentation & deployment setup
-- [ ] Write `CLAUDE.md` (tech stack, commands, conventions, notes)
-- [ ] Configure Vercel project and environment variables
-- [ ] Test build: `npm run build`
-- [ ] Deploy initial setup to Vercel (empty pages OK)
-- [ ] Verify GitHub connection for auto-deploy
+- [x] Write `CLAUDE.md` (tech stack, commands, conventions, notes)
+- [x] Configure Vercel project and environment variables
+- [x] Test build: `npm run build`
+- [x] Deploy initial setup to Vercel (empty pages OK)
+- [x] Verify GitHub connection for auto-deploy
 
 ---
 
