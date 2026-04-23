@@ -9,21 +9,30 @@ export type Database = {
         Row: {
           id: string
           title: string
+          slug: string
           description: string
+          thumbnail_url: string | null
+          tags: string[]
           created_at: string
           updated_at: string
         }
         Insert: {
           id?: string
           title: string
+          slug: string
           description: string
+          thumbnail_url?: string | null
+          tags: string[]
           created_at?: string
           updated_at?: string
         }
         Update: {
           id?: string
           title?: string
+          slug?: string
           description?: string
+          thumbnail_url?: string | null
+          tags?: string[]
           created_at?: string
           updated_at?: string
         }
