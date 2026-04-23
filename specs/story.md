@@ -48,24 +48,24 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 > Design reference: [`specs/design/about.jsx`](design/about.jsx)
 
 ### Task 2.1: About page - Bio & Timeline
-- [ ] Create About.vue page at `/about` route
-- [ ] Build bio section with personal introduction
-- [ ] Build timeline component showing work/education experiences
-- [ ] Add dates, titles, and descriptions to timeline items
-- [ ] Style timeline responsively (mobile-first)
+- [x] Create About.vue page at `/about` route
+- [x] Build bio section with personal introduction
+- [x] Build timeline component showing work/education experiences
+- [x] Add dates, titles, and descriptions to timeline items
+- [x] Style timeline responsively (mobile-first)
 
 ### Task 2.2: About page - Skills & CV
-- [ ] Create skills component with categorized skills (Frontend, Backend, Tools, etc.)
-- [ ] Display skills as badges or cards
-- [ ] Add CV download link (PDF from Supabase Storage or static file)
-- [ ] Test CV download functionality
-- [ ] Ensure responsive layout on mobile/tablet/desktop
+- [x] Create skills component with categorized skills (Frontend, Backend, Tools, etc.)
+- [x] Display skills as badges or cards
+- [x] Add CV download link (PDF from Supabase Storage or static file)
+- [x] Test CV download functionality
+- [x] Ensure responsive layout on mobile/tablet/desktop
 
 ### Task 2.3: About page - SEO & Accessibility
-- [ ] Add SEO meta tags (title: "About Me", description, og:image)
-- [ ] Add semantic HTML (section, article, nav, etc.)
-- [ ] Verify accessibility (alt text, heading hierarchy, focus management)
-- [ ] Test page loads without errors
+- [x] Add SEO meta tags (title: "About Me", description, og:image)
+- [x] Add semantic HTML (section, article, nav, etc.)
+- [x] Verify accessibility (alt text, heading hierarchy, focus management)
+- [x] Test page loads without errors
 
 ---
 
@@ -74,11 +74,11 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 > Design reference: [`specs/design/project.jsx`](design/project.jsx) — includes list page (grid/list view, tag filter) and detail page
 
 ### Task 3.1: Projects list - Grid layout & fetching
-- [ ] Create ProjectList.vue page at `/projects` route
-- [ ] Fetch projects from Supabase `projects` table
-- [ ] Display projects in grid/list view with: thumbnail, title, short description, tech tags
-- [ ] Implement mobile-first responsive grid
-- [ ] Add loading state while fetching
+- [x] Create ProjectList.vue page at `/projects` route
+- [x] Fetch projects from Supabase `projects` table
+- [x] Display projects in grid/list view with: thumbnail, title, short description, tech tags
+- [x] Implement mobile-first responsive grid
+- [x] Add loading state while fetching
 
 ### Task 3.2: Projects list - Filtering by technology
 - [ ] Extract unique tech tags from all projects
