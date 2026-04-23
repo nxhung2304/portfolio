@@ -15,10 +15,18 @@
       </div>
       <div>
         <h1 class="text-3xl font-bold tracking-tight mb-3">About me</h1>
-        <p class="text-gray-500 leading-relaxed max-w-xl">
+        <p class="text-gray-500 leading-relaxed max-w-xl mb-6">
           Full Stack Developer & DevOps Engineer với hơn 5 năm kinh nghiệm. Mình tin vào việc xây dựng
           hệ thống đơn giản nhưng mạnh mẽ, tự động hóa mọi thứ có thể, và chia sẻ kiến thức với cộng đồng.
         </p>
+        <a 
+          href="/cv.pdf" 
+          download 
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 transition-all duration-300 text-sm font-medium"
+        >
+          <span aria-hidden="true">📄</span>
+          Download CV
+        </a>
       </div>
     </section>
 
@@ -44,6 +52,7 @@
     <section
       ref="timelineRef"
       :class="['transition-all duration-700 delay-150', timelineVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8']"
+      class="mb-16"
     >
       <h2 class="text-lg font-semibold mb-6">Kinh nghiệm</h2>
 
@@ -79,6 +88,34 @@
       </div>
     </section>
 
+    <!-- Skills -->
+    <section
+      ref="skillsRef"
+      :class="['transition-all duration-700 delay-200', skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8']"
+      class="mb-16"
+    >
+      <h2 class="text-lg font-semibold mb-6">Kỹ năng chuyên môn</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div
+          v-for="skillGroup in SKILLS"
+          :key="skillGroup.category"
+          class="p-5 rounded-xl border border-gray-200 bg-white"
+        >
+          <h3 class="text-sm font-bold text-gray-700 mb-4">{{ skillGroup.category }}</h3>
+          <div class="flex flex-wrap gap-2">
+            <span
+              v-for="item in skillGroup.items"
+              :key="item"
+              class="px-2.5 py-1 rounded-md bg-gray-50 border border-gray-100 text-xs font-medium text-gray-600 hover:border-blue-300 hover:bg-blue-50 transition-colors duration-200 cursor-default"
+            >
+              {{ item }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 </template>
 
@@ -87,6 +124,7 @@ import { useScrollReveal } from '../composables/useScrollReveal'
 
 type StatItem = { num: string; label: string }
 type TimelineItem = { year: string; role: string; company: string; desc: string; type: 'work' | 'edu' }
+type SkillGroup = { category: string; items: string[] }
 
 const STATS: StatItem[] = [
   { num: '5+', label: 'Năm kinh nghiệm' },
@@ -126,7 +164,14 @@ const TIMELINE: TimelineItem[] = [
   },
 ]
 
+const SKILLS: SkillGroup[] = [
+  { category: 'Frontend', items: ['Vue 3', 'TypeScript', 'Tailwind CSS', 'Vite', 'Pinia', 'Nuxt.js'] },
+  { category: 'Backend', items: ['Node.js', 'PostgreSQL', 'Supabase', 'REST API', 'Redis', 'GraphQL'] },
+  { category: 'Tools/DevOps', items: ['Docker', 'Kubernetes', 'GitHub Actions', 'Linux', 'Terraform', 'AWS'] },
+]
+
 const { targetRef: bioRef, isVisible: bioVisible } = useScrollReveal()
 const { targetRef: statsRef, isVisible: statsVisible } = useScrollReveal()
 const { targetRef: timelineRef, isVisible: timelineVisible } = useScrollReveal()
+const { targetRef: skillsRef, isVisible: skillsVisible } = useScrollReveal()
 </script>
