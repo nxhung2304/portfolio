@@ -40,19 +40,21 @@
     <section
       ref="statsRef"
       :class="['transition-all duration-700 delay-100', statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8']"
-      class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
-      aria-label="Thống kê nghề nghiệp"
+      class="mb-16"
+      aria-labelledby="stats-heading"
     >
-      <h2 class="sr-only">Thống kê</h2>
-      <div
-        v-for="stat in STATS"
-        :key="stat.label"
-        class="p-5 rounded-xl border border-gray-200 bg-white hover:-translate-y-1 hover:border-blue-400 transition-all duration-300 text-center cursor-default"
-      >
-        <p class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
-          {{ stat.num }}
-        </p>
-        <p class="text-xs text-gray-500 mt-1">{{ stat.label }}</p>
+      <h2 id="stats-heading" class="sr-only">Thống kê nghề nghiệp</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          v-for="stat in STATS"
+          :key="stat.label"
+          class="p-5 rounded-xl border border-gray-200 bg-white hover:-translate-y-1 hover:border-blue-400 transition-all duration-300 text-center cursor-default"
+        >
+          <p class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
+            {{ stat.num }}
+          </p>
+          <p class="text-xs text-gray-500 mt-1">{{ stat.label }}</p>
+        </div>
       </div>
     </section>
 
@@ -135,18 +137,17 @@ import { useHead } from '@vueuse/head'
 import { useScrollReveal } from '../composables/useScrollReveal'
 
 useHead({
-  title: 'About Me',
+  title: 'About Me | Nguyen Hung',
   meta: [
     { 
       name: 'description', 
       content: 'Full Stack Developer & DevOps Engineer với hơn 5 năm kinh nghiệm. Chuyên về Vue 3, Node.js, Kubernetes và AWS.' 
     },
-    { property: 'og:title', content: 'About Me' },
+    { property: 'og:title', content: 'About Me | Nguyen Hung' },
     { 
       property: 'og:description', 
       content: 'Full Stack Developer & DevOps Engineer với hơn 5 năm kinh nghiệm. Chuyên về Vue 3, Node.js, Kubernetes và AWS.' 
     },
-    { property: 'og:image', content: '/og-about.png' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ],
 })
