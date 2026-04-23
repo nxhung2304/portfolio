@@ -1,20 +1,25 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 sm:px-8 py-12">
+  <main class="max-w-4xl mx-auto px-4 sm:px-8 py-12">
 
     <!-- Bio Header -->
     <section
       ref="bioRef"
       :class="['transition-all duration-700', bioVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8']"
       class="flex flex-col md:flex-row gap-8 md:gap-10 items-center md:items-start mb-14"
+      aria-labelledby="bio-heading"
     >
       <div class="relative flex-shrink-0">
-        <div class="w-28 h-28 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white font-bold text-3xl select-none">
+        <div 
+          role="img"
+          aria-label="Nguyen Hung avatar"
+          class="w-28 h-28 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white font-bold text-3xl select-none"
+        >
           NH
         </div>
         <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-green-500 border-2 border-white" />
       </div>
       <div>
-        <h1 class="text-3xl font-bold tracking-tight mb-3">About me</h1>
+        <h1 id="bio-heading" class="text-3xl font-bold tracking-tight mb-3">About me</h1>
         <p class="text-gray-500 leading-relaxed max-w-xl mb-6">
           Full Stack Developer & DevOps Engineer với hơn 5 năm kinh nghiệm. Mình tin vào việc xây dựng
           hệ thống đơn giản nhưng mạnh mẽ, tự động hóa mọi thứ có thể, và chia sẻ kiến thức với cộng đồng.
@@ -23,6 +28,7 @@
           href="/cv.pdf" 
           download 
           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 transition-all duration-300 text-sm font-medium"
+          aria-label="Download CV (PDF)"
         >
           <span aria-hidden="true">📄</span>
           Download CV
@@ -35,7 +41,9 @@
       ref="statsRef"
       :class="['transition-all duration-700 delay-100', statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8']"
       class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+      aria-label="Thống kê nghề nghiệp"
     >
+      <h2 class="sr-only">Thống kê</h2>
       <div
         v-for="stat in STATS"
         :key="stat.label"
@@ -53,8 +61,9 @@
       ref="timelineRef"
       :class="['transition-all duration-700 delay-150', timelineVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8']"
       class="mb-16"
+      aria-labelledby="timeline-heading"
     >
-      <h2 class="text-lg font-semibold mb-6">Kinh nghiệm</h2>
+      <h2 id="timeline-heading" class="text-lg font-semibold mb-6">Kinh nghiệm</h2>
 
       <div class="relative">
         <!-- Vertical connector line centered behind the 32px icon dot -->
@@ -71,6 +80,7 @@
               'w-8 h-8 rounded-full border-2 flex-shrink-0 flex items-center justify-center text-sm z-10 bg-white',
               item.type === 'work' ? 'border-blue-500' : 'border-cyan-400'
             ]"
+            aria-hidden="true"
           >
             {{ item.type === 'work' ? '💼' : '🎓' }}
           </div>
@@ -93,8 +103,9 @@
       ref="skillsRef"
       :class="['transition-all duration-700 delay-200', skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8']"
       class="mb-16"
+      aria-labelledby="skills-heading"
     >
-      <h2 class="text-lg font-semibold mb-6">Kỹ năng chuyên môn</h2>
+      <h2 id="skills-heading" class="text-lg font-semibold mb-6">Kỹ năng chuyên môn</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div
@@ -116,11 +127,29 @@
       </div>
     </section>
 
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
+import { useHead } from '@vueuse/head'
 import { useScrollReveal } from '../composables/useScrollReveal'
+
+useHead({
+  title: 'About Me',
+  meta: [
+    { 
+      name: 'description', 
+      content: 'Full Stack Developer & DevOps Engineer với hơn 5 năm kinh nghiệm. Chuyên về Vue 3, Node.js, Kubernetes và AWS.' 
+    },
+    { property: 'og:title', content: 'About Me' },
+    { 
+      property: 'og:description', 
+      content: 'Full Stack Developer & DevOps Engineer với hơn 5 năm kinh nghiệm. Chuyên về Vue 3, Node.js, Kubernetes và AWS.' 
+    },
+    { property: 'og:image', content: '/og-about.png' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ],
+})
 
 type StatItem = { num: string; label: string }
 type TimelineItem = { year: string; role: string; company: string; desc: string; type: 'work' | 'edu' }
