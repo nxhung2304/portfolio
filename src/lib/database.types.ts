@@ -95,3 +95,5 @@ export type Database = {
     }
   }
 }
+
+export type Project = Database['public']['Tables']['projects']['Row']

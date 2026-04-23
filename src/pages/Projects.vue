@@ -26,10 +26,11 @@
     <!-- Error State -->
     <div v-else-if="error" class="py-20 text-center">
       <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 mb-4">
-        ⚠️
+        <span aria-hidden="true">⚠️</span>
       </div>
       <p class="text-gray-600 mb-6">Đã có lỗi xảy ra khi tải dữ liệu. Vui lòng thử lại sau.</p>
       <button 
+        type="button"
         @click="fetchProjects"
         class="px-5 py-2 rounded-lg bg-gray-900 text-white hover:bg-black transition-all font-medium text-sm"
       >
@@ -40,7 +41,7 @@
     <!-- Empty State -->
     <div v-else-if="projects.length === 0" class="py-20 text-center">
       <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 text-gray-300 mb-4">
-        🔍
+        <span aria-hidden="true">🔍</span>
       </div>
       <p class="text-gray-500">Chưa có dự án nào được hiển thị.</p>
     </div>
@@ -59,8 +60,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useHead } from '@vueuse/head'
+import type { PostgrestError } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
-import type { Database } from '../lib/database.types'
+import type { Project } from '../lib/database.types'
 import ProjectCard from '../components/ProjectCard.vue'
 
 useHead({
@@ -68,14 +70,13 @@ useHead({
   meta: [
     { name: 'description', content: 'Portfolio của Nguyen Hung - Danh sách các dự án tiêu biểu.' },
     { property: 'og:title', content: 'Projects | Nguyen Hung' },
+    { property: 'og:description', content: 'Portfolio của Nguyen Hung - Danh sách các dự án tiêu biểu.' },
   ],
 })
 
-type Project = Database['public']['Tables']['projects']['Row']
-
 const projects = ref<Project[]>([])
 const loading = ref(true)
-const error = ref<any>(null)
+const error = ref<PostgrestError | Error | null>(null)
 
 const fetchProjects = async () => {
   try {
@@ -91,13 +92,11 @@ const fetchProjects = async () => {
     projects.value = data || []
   } catch (e) {
     console.error('Error fetching projects:', e)
-    error.value = e
+    error.value = e as PostgrestError | Error
   } finally {
     loading.value = false
   }
 }
 
-onMounted(() => {
-  fetchProjects()
-})
+onMounted(fetchProjects)
 </script>

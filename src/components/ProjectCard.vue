@@ -43,9 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Database } from '../lib/database.types'
-
-type Project = Database['public']['Tables']['projects']['Row']
+import type { Project } from '../lib/database.types'
 
 defineProps<{
   project: Project
