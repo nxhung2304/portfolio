@@ -24,7 +24,7 @@
           download 
           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 transition-all duration-300 text-sm font-medium"
         >
-          <span>📄</span>
+          <span aria-hidden="true">📄</span>
           Download CV
         </a>
       </div>
@@ -92,6 +92,7 @@
     <section
       ref="skillsRef"
       :class="['transition-all duration-700 delay-200', skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8']"
+      class="mb-16"
     >
       <h2 class="text-lg font-semibold mb-6">Kỹ năng chuyên môn</h2>
 
@@ -106,7 +107,7 @@
             <span
               v-for="item in skillGroup.items"
               :key="item"
-              class="px-2.5 py-1 rounded-md bg-gray-50 border border-gray-100 text-[11px] font-medium text-gray-600 hover:border-blue-300 hover:bg-blue-50 transition-colors duration-200 cursor-default"
+              class="px-2.5 py-1 rounded-md bg-gray-50 border border-gray-100 text-xs font-medium text-gray-600 hover:border-blue-300 hover:bg-blue-50 transition-colors duration-200 cursor-default"
             >
               {{ item }}
             </span>
@@ -165,7 +166,7 @@ const TIMELINE: TimelineItem[] = [
 
 const SKILLS: SkillGroup[] = [
   { category: 'Frontend', items: ['Vue 3', 'TypeScript', 'Tailwind CSS', 'Vite', 'Pinia', 'Nuxt.js'] },
-  { category: 'Backend',  items: ['Node.js', 'PostgreSQL', 'Supabase', 'REST API', 'Redis', 'GraphQL'] },
+  { category: 'Backend', items: ['Node.js', 'PostgreSQL', 'Supabase', 'REST API', 'Redis', 'GraphQL'] },
   { category: 'Tools/DevOps', items: ['Docker', 'Kubernetes', 'GitHub Actions', 'Linux', 'Terraform', 'AWS'] },
 ]
 
