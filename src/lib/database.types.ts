@@ -9,23 +9,41 @@ export type Database = {
         Row: {
           id: string
           title: string
-          description: string
+          slug: string
+          description: string | null
+          content: string | null
+          thumbnail_url: string | null
+          tags: string[] | null
+          github_url: string | null
+          demo_url: string | null
+          featured: boolean
           created_at: string
-          updated_at: string
         }
         Insert: {
           id?: string
           title: string
-          description: string
+          slug: string
+          description?: string | null
+          content?: string | null
+          thumbnail_url?: string | null
+          tags?: string[] | null
+          github_url?: string | null
+          demo_url?: string | null
+          featured?: boolean
           created_at?: string
-          updated_at?: string
         }
         Update: {
           id?: string
           title?: string
-          description?: string
+          slug?: string
+          description?: string | null
+          content?: string | null
+          thumbnail_url?: string | null
+          tags?: string[] | null
+          github_url?: string | null
+          demo_url?: string | null
+          featured?: boolean
           created_at?: string
-          updated_at?: string
         }
       }
       posts: {
@@ -86,3 +104,5 @@ export type Database = {
     }
   }
 }
+
+export type Project = Database['public']['Tables']['projects']['Row']

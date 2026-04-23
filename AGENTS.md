@@ -1,5 +1,10 @@
 # Portfolio – Project Documentation
 
+## Project
+- Project ID: `ebcmjbcklusdjdwaaydg` (region: `ap-south-1`)
+- GitHub: https://github.com/nxhung2304/portfolio
+- Git remote: git@github.com:nxhung2304/portfolio.git
+
 ## Tech Stack
 
 - **Vue 3** – UI framework (Composition API + `<script setup>`)
@@ -48,11 +53,6 @@ Runtime config is loaded from `.env.local` (gitignored — never commit this fil
 Variables **must** use the `VITE_` prefix so Vite exposes them to the client bundle. A plain `SUPABASE_URL` without the prefix is `undefined` at runtime.
 
 For Vercel deployments, set these in **Settings → Environment Variables** for all three environments (Production, Preview, Development). Vercel does not read `.env.local` from the repo.
-
-## Supabase Notes
-
-- Project ID: `ebcmjbcklusdjdwaaydg` (region: `ap-south-1`)
-- GitHub: https://github.com/nxhung2304/portfolio
 
 ## Vercel Deployment
 
