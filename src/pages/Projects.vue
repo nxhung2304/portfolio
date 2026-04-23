@@ -38,18 +38,55 @@
       </button>
     </div>
 
-    <!-- Empty State -->
-    <div v-else-if="projects.length === 0" class="py-20 text-center">
+    <!-- Tag Filter -->
+    <div v-if="!loading && !error && uniqueTags.length > 0" class="flex flex-wrap gap-2 mb-8">
+      <button
+        type="button"
+        @click="activeTag = null"
+        :class="activeTag === null ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
+        class="px-3 py-1 rounded-full text-sm font-medium transition-colors"
+      >
+        All
+      </button>
+      <button
+        v-for="tag in uniqueTags"
+        :key="tag"
+        type="button"
+        @click="activeTag = tag"
+        :class="activeTag === tag ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
+        class="px-3 py-1 rounded-full text-sm font-medium transition-colors"
+      >
+        {{ tag }}
+      </button>
+    </div>
+
+    <!-- Empty State: no projects in DB -->
+    <div v-if="!loading && !error && projects.length === 0" class="py-20 text-center">
       <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 text-gray-300 mb-4">
         <span aria-hidden="true">🔍</span>
       </div>
       <p class="text-gray-500">Chưa có dự án nào được hiển thị.</p>
     </div>
 
+    <!-- Empty State: no match for active filter -->
+    <div v-if="!loading && !error && projects.length > 0 && filteredProjects.length === 0" class="py-20 text-center">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 text-gray-300 mb-4">
+        <span aria-hidden="true">🔍</span>
+      </div>
+      <p class="text-gray-500">Không có dự án nào với tag <span class="font-medium text-gray-700">{{ activeTag ?? '' }}</span>.</p>
+      <button
+        type="button"
+        @click="activeTag = null"
+        class="mt-4 px-4 py-2 rounded-lg bg-gray-900 text-white hover:bg-black transition-all font-medium text-sm"
+      >
+        Xem tất cả
+      </button>
+    </div>
+
     <!-- Grid Layout -->
-    <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div v-if="!loading && !error && filteredProjects.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       <ProjectCard
-        v-for="project in projects"
+        v-for="project in filteredProjects"
         :key="project.id"
         :project="project"
       />
@@ -58,7 +95,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useHead } from '@vueuse/head'
 import type { PostgrestError } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
@@ -77,6 +114,17 @@ useHead({
 const projects = ref<Project[]>([])
 const loading = ref(true)
 const error = ref<PostgrestError | Error | null>(null)
+const activeTag = ref<string | null>(null)
+
+const uniqueTags = computed<string[]>(() =>
+  [...new Set(projects.value.flatMap(p => p.tags ?? []))].sort()
+)
+
+const filteredProjects = computed<Project[]>(() =>
+  activeTag.value
+    ? projects.value.filter(p => p.tags?.includes(activeTag.value!))
+    : projects.value
+)
 
 const fetchProjects = async () => {
   try {
