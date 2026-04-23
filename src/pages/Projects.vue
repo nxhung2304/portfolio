@@ -85,7 +85,7 @@ const fetchProjects = async () => {
     
     const { data, error: supabaseError } = await supabase
       .from('projects')
-      .select('id, title, slug, description, thumbnail_url, tags, created_at, updated_at')
+      .select('id, title, slug, description, thumbnail_url, tags, created_at')
       .order('created_at', { ascending: false })
 
     if (supabaseError) throw supabaseError
