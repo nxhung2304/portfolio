@@ -39,20 +39,35 @@
     </div>
 
     <!-- Tag Filter -->
-    <div v-if="!loading && !error && uniqueTags.length > 0" class="flex flex-wrap gap-2 mb-8">
+    <div v-if="!loading && !error && (uniqueTags.length > 0 || projects.some(p => p.featured))" class="flex flex-wrap items-center gap-2 mb-8">
       <button
         type="button"
-        @click="activeTag = null"
-        :class="activeTag === null ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
+        @click="activeTag = null; onlyFeatured = false"
+        :class="activeTag === null && !onlyFeatured ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
         class="px-3 py-1 rounded-full text-sm font-medium transition-colors"
       >
         All
       </button>
+
+      <div class="h-4 w-px bg-gray-200 mx-1" />
+
+      <button
+        type="button"
+        @click="onlyFeatured = !onlyFeatured; activeTag = null"
+        :class="onlyFeatured ? 'bg-blue-500 text-white' : 'bg-blue-50 text-blue-600 hover:bg-blue-100'"
+        class="px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5"
+      >
+        <span v-if="onlyFeatured">★</span>
+        Featured
+      </button>
+
+      <div class="h-4 w-px bg-gray-200 mx-1" />
+
       <button
         v-for="tag in uniqueTags"
         :key="tag"
         type="button"
-        @click="activeTag = tag"
+        @click="activeTag = tag; onlyFeatured = false"
         :class="activeTag === tag ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
         class="px-3 py-1 rounded-full text-sm font-medium transition-colors"
       >
@@ -73,10 +88,14 @@
       <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 text-gray-300 mb-4">
         <span aria-hidden="true">🔍</span>
       </div>
-      <p class="text-gray-500">Không có dự án nào với tag <span class="font-medium text-gray-700">{{ activeTag ?? '' }}</span>.</p>
+      <p class="text-gray-500">
+        Không có dự án nào 
+        <span v-if="onlyFeatured">nổi bật</span>
+        <span v-if="activeTag">với tag <span class="font-medium text-gray-700">{{ activeTag }}</span></span>.
+      </p>
       <button
         type="button"
-        @click="activeTag = null"
+        @click="activeTag = null; onlyFeatured = false"
         class="mt-4 px-4 py-2 rounded-lg bg-gray-900 text-white hover:bg-black transition-all font-medium text-sm"
       >
         Xem tất cả
@@ -115,16 +134,25 @@ const projects = ref<Project[]>([])
 const loading = ref(true)
 const error = ref<PostgrestError | Error | null>(null)
 const activeTag = ref<string | null>(null)
+const onlyFeatured = ref(false)
 
 const uniqueTags = computed<string[]>(() =>
   [...new Set(projects.value.flatMap(p => p.tags ?? []))].sort()
 )
 
-const filteredProjects = computed<Project[]>(() =>
-  activeTag.value
-    ? projects.value.filter(p => p.tags?.includes(activeTag.value!))
-    : projects.value
-)
+const filteredProjects = computed<Project[]>(() => {
+  let result = projects.value
+  
+  if (onlyFeatured.value) {
+    result = result.filter(p => p.featured)
+  }
+  
+  if (activeTag.value) {
+    result = result.filter(p => p.tags?.includes(activeTag.value!))
+  }
+  
+  return result
+})
 
 const fetchProjects = async () => {
   try {
@@ -133,7 +161,7 @@ const fetchProjects = async () => {
     
     const { data, error: supabaseError } = await supabase
       .from('projects')
-      .select('id, title, slug, description, thumbnail_url, tags, created_at')
+      .select('id, title, slug, description, thumbnail_url, tags, featured, created_at')
       .order('created_at', { ascending: false })
 
     if (supabaseError) throw supabaseError
