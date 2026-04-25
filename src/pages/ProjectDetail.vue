@@ -52,47 +52,73 @@
         <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4">{{ project.title }}</h1>
         <p class="text-xl text-gray-500 mb-8">{{ project.description }}</p>
         
-        <div class="flex items-center gap-6 text-sm text-gray-400">
-          <span v-if="project.created_at">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-6 text-sm">
+          <span v-if="project.created_at" class="text-gray-400">
             {{ new Date(project.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long' }) }}
           </span>
-          <div class="flex gap-4">
+          <div class="flex flex-wrap gap-4">
             <a 
               v-if="project.github_url" 
               :href="project.github_url" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-1"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-900 transition-all font-medium"
             >
-              GitHub ↗
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.58V22"></path></svg>
+              GitHub
             </a>
             <a 
               v-if="project.demo_url" 
               :href="project.demo_url" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-1"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-900 text-white hover:bg-black transition-all font-medium shadow-sm"
             >
-              Live Demo ↗
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Live Demo
             </a>
           </div>
         </div>
       </header>
 
       <!-- Thumbnail -->
-      <div v-if="project.thumbnail_url" class="mb-12 overflow-hidden rounded-2xl border border-gray-100">
+      <div v-if="project.thumbnail_url" class="mb-12 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
         <img 
           :src="project.thumbnail_url" 
           :alt="project.title"
           class="w-full h-auto object-cover aspect-video"
+          loading="lazy"
         />
       </div>
 
       <!-- Markdown Content -->
       <div 
-        class="prose prose-gray prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 prose-img:rounded-2xl"
+        class="prose prose-gray prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 prose-img:rounded-2xl mb-16"
         v-html="renderedContent"
       ></div>
+
+      <!-- Social Share Section -->
+      <footer class="pt-8 border-t border-gray-100">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div class="flex items-center gap-4">
+            <span class="text-sm font-semibold text-gray-900 uppercase tracking-wider">Share</span>
+            <div class="flex gap-2">
+              <button class="p-2 rounded-full border border-gray-100 text-gray-400 hover:text-blue-500 hover:border-blue-100 hover:bg-blue-50 transition-all" title="Share on Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+              </button>
+              <button class="p-2 rounded-full border border-gray-100 text-gray-400 hover:text-blue-700 hover:border-blue-100 hover:bg-blue-50 transition-all" title="Share on LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </button>
+              <button class="p-2 rounded-full border border-gray-100 text-gray-400 hover:text-gray-900 hover:border-gray-200 hover:bg-gray-50 transition-all" title="Copy Link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              </button>
+            </div>
+          </div>
+          <router-link to="/projects" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
+            Explore more projects →
+          </router-link>
+        </div>
+      </footer>
     </article>
   </main>
 </template>
@@ -102,6 +128,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
 import MarkdownIt from 'markdown-it'
+import type Token from 'markdown-it/lib/token'
 import { supabase } from '../lib/supabase'
 import type { Project } from '../lib/database.types'
 
@@ -112,9 +139,21 @@ const md = new MarkdownIt({
   typographer: true
 })
 
+// Add lazy loading to images in markdown
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const defaultImageRender = md.renderer.rules.image || function(tokens: Token[], idx: number, options: MarkdownIt.Options, env: any, self: any) {
+  return self.renderToken(tokens, idx, options)
+}
+
+md.renderer.rules.image = function (tokens: Token[], idx: number, options: MarkdownIt.Options, env: any, self: any) {
+  tokens[idx].attrPush(['loading', 'lazy'])
+  return defaultImageRender(tokens, idx, options, env, self)
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
 const project = ref<Project | null>(null)
 const loading = ref(true)
-const error = ref<any>(null)
+const error = ref<Error | null>(null)
 
 const renderedContent = computed(() => {
   return project.value?.content ? md.render(project.value.content) : ''
@@ -143,11 +182,12 @@ const fetchProject = async () => {
       .single()
 
     if (supabaseError) throw supabaseError
-    project.value = data
-  } catch (e) {
+    project.value = data as Project
+    } catch (e) {
     console.error('Error fetching project:', e)
-    error.value = e
-  } finally {
+    error.value = e as Error
+    } finally {
+
     loading.value = false
   }
 }
