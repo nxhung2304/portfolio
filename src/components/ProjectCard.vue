@@ -1,10 +1,21 @@
 <template>
   <router-link
     :to="{ name: 'project-detail', params: { slug: project.slug } }"
-    class="group block p-4 rounded-2xl border border-gray-200 bg-white hover:border-blue-400 hover:-translate-y-1 transition-all duration-300"
+    class="group block p-4 rounded-2xl border bg-white hover:-translate-y-1 transition-all duration-300"
+    :class="[
+      project.featured 
+        ? 'border-blue-100 ring-4 ring-blue-50/30' 
+        : 'border-gray-200'
+    ]"
   >
     <!-- Thumbnail -->
     <div class="relative aspect-video mb-4 overflow-hidden rounded-xl bg-gray-100">
+      <div 
+        v-if="project.featured"
+        class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md bg-blue-500 text-white text-[10px] font-bold uppercase tracking-wider shadow-sm"
+      >
+        Featured
+      </div>
       <img
         v-if="project.thumbnail_url"
         :src="project.thumbnail_url"
