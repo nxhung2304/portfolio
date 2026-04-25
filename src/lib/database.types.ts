@@ -50,23 +50,38 @@ export type Database = {
         Row: {
           id: string
           title: string
-          content: string
+          slug: string
+          excerpt: string | null
+          content: string | null
+          cover_image_url: string | null
+          tags: string[] | null
+          published: boolean
+          published_at: string | null
           created_at: string
-          updated_at: string
         }
         Insert: {
           id?: string
           title: string
-          content: string
+          slug: string
+          excerpt?: string | null
+          content?: string | null
+          cover_image_url?: string | null
+          tags?: string[] | null
+          published?: boolean
+          published_at?: string | null
           created_at?: string
-          updated_at?: string
         }
         Update: {
           id?: string
           title?: string
-          content?: string
+          slug?: string
+          excerpt?: string | null
+          content?: string | null
+          cover_image_url?: string | null
+          tags?: string[] | null
+          published?: boolean
+          published_at?: string | null
           created_at?: string
-          updated_at?: string
         }
       }
       contacts: {
@@ -106,3 +121,5 @@ export type Database = {
 }
 
 export type Project = Database['public']['Tables']['projects']['Row']
+export type Post = Database['public']['Tables']['posts']['Row']
+export type Contact = Database['public']['Tables']['contacts']['Row']
