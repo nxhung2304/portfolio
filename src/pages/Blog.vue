@@ -27,6 +27,49 @@
       </div>
     </header>
 
+    <!-- Tag Cloud -->
+    <div v-if="allTags.length > 0" class="flex flex-wrap items-center gap-2 mb-8">
+      <button
+        type="button"
+        @click="selectedTags = []"
+        :class="selectedTags.length === 0 ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
+        class="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
+      >
+        All Posts
+      </button>
+
+      <div class="h-4 w-px bg-gray-200 mx-1" />
+
+      <button
+        v-for="tag in allTags"
+        :key="tag"
+        type="button"
+        @click="toggleTag(tag)"
+        :class="selectedTags.includes(tag) ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
+        class="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
+      >
+        {{ tag }}
+      </button>
+    </div>
+
+    <!-- Active Filters -->
+    <div v-if="selectedTags.length > 0" class="flex items-center gap-2 mb-6">
+      <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Active Tags:</span>
+      <div class="flex flex-wrap gap-2">
+        <button
+          v-for="tag in selectedTags"
+          :key="tag"
+          @click="toggleTag(tag)"
+          class="flex items-center gap-1 px-2 py-1 rounded-md bg-blue-50 border border-blue-100 text-[10px] font-bold uppercase tracking-wider text-blue-500 hover:bg-blue-100 transition-colors"
+        >
+          {{ tag }}
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <!-- Blog Posts Grid -->
     <div v-if="posts.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <BlogCard 
@@ -38,19 +81,19 @@
 
     <!-- Empty State / No Results -->
     <div v-else-if="!isLoading" class="text-center py-20 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
-      <div class="text-5xl mb-4">{{ debouncedQuery ? '🔍' : '📭' }}</div>
+      <div class="text-5xl mb-4">{{ debouncedQuery || selectedTags.length > 0 ? '🔍' : '📭' }}</div>
       <h3 class="text-xl font-bold text-gray-900 mb-2">
-        {{ debouncedQuery ? 'No results found' : 'No posts yet' }}
+        {{ debouncedQuery || selectedTags.length > 0 ? 'No results found' : 'No posts yet' }}
       </h3>
       <p class="text-gray-500">
-        {{ debouncedQuery ? `We couldn't find any posts matching "${debouncedQuery}"` : 'Check back later for new content!' }}
+        {{ debouncedQuery || selectedTags.length > 0 ? "We couldn't find any posts matching your criteria" : 'Check back later for new content!' }}
       </p>
       <button 
-        v-if="debouncedQuery"
-        @click="searchQuery = ''; debouncedQuery = ''"
+        v-if="debouncedQuery || selectedTags.length > 0"
+        @click="clearFilters"
         class="mt-6 text-blue-500 font-medium hover:underline"
       >
-        Clear search
+        Clear all filters
       </button>
     </div>
 
@@ -95,7 +138,27 @@ const pageSize = 6
 
 const searchQuery = ref('')
 const debouncedQuery = ref('')
+const selectedTags = ref<string[]>([])
+const allTags = ref<string[]>([])
 let debounceTimeout: ReturnType<typeof setTimeout> | null = null
+
+const fetchTags = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('posts')
+      .select('tags')
+      .eq('published', true)
+    
+    if (error) throw error
+    
+    if (data) {
+      const tags = data.flatMap(post => post.tags || [])
+      allTags.value = [...new Set(tags)].sort()
+    }
+  } catch (error) {
+    console.error('Error fetching tags:', error)
+  }
+}
 
 const fetchPosts = async () => {
   isLoading.value = true
@@ -110,6 +173,11 @@ const fetchPosts = async () => {
 
     if (debouncedQuery.value) {
       query = query.or(`title.ilike.%${debouncedQuery.value}%,excerpt.ilike.%${debouncedQuery.value}%`)
+    }
+
+    if (selectedTags.value.length > 0) {
+      // Use contains for AND logic (must have all selected tags)
+      query = query.contains('tags', selectedTags.value)
     }
 
     const { data, count, error } = await query
@@ -138,6 +206,26 @@ const loadMore = () => {
   fetchPosts()
 }
 
+const toggleTag = (tag: string) => {
+  const index = selectedTags.value.indexOf(tag)
+  if (index === -1) {
+    selectedTags.value.push(tag)
+  } else {
+    selectedTags.value.splice(index, 1)
+  }
+}
+
+const clearFilters = () => {
+  searchQuery.value = ''
+  debouncedQuery.value = ''
+  selectedTags.value = []
+}
+
+watch(selectedTags, () => {
+  page.value = 0
+  fetchPosts()
+}, { deep: true })
+
 watch(searchQuery, (newQuery) => {
   if (debounceTimeout) clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
@@ -148,6 +236,7 @@ watch(searchQuery, (newQuery) => {
 })
 
 onMounted(() => {
+  fetchTags()
   fetchPosts()
 })
 </script>
