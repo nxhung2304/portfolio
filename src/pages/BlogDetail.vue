@@ -81,20 +81,7 @@
       <!-- Social Share Section -->
       <footer class="pt-8 border-t border-gray-100">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-          <div class="flex items-center gap-4">
-            <span class="text-sm font-semibold text-gray-900 uppercase tracking-wider">Share</span>
-            <div class="flex gap-2">
-              <button class="p-2 rounded-full border border-gray-100 text-gray-400 hover:text-blue-500 hover:border-blue-100 hover:bg-blue-50 transition-all" title="Share on Twitter" @click="shareOnTwitter">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
-              </button>
-              <button class="p-2 rounded-full border border-gray-100 text-gray-400 hover:text-blue-700 hover:border-blue-100 hover:bg-blue-50 transition-all" title="Share on LinkedIn" @click="shareOnLinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-              </button>
-              <button class="p-2 rounded-full border border-gray-100 text-gray-400 hover:text-gray-900 hover:border-gray-200 hover:bg-gray-50 transition-all" title="Copy Link" @click="copyLink">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-              </button>
-            </div>
-          </div>
+          <SocialShare v-if="post" :title="post.title" :url="window.location.href" />
           <router-link to="/blog" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
             Read more articles →
           </router-link>
@@ -112,6 +99,7 @@ import MarkdownIt from 'markdown-it'
 import type Token from 'markdown-it/lib/token'
 import { supabase } from '../lib/supabase'
 import type { Post } from '../lib/database.types'
+import SocialShare from '../components/SocialShare.vue'
 
 const route = useRoute()
 const md = new MarkdownIt({
@@ -147,7 +135,9 @@ useHead(computed(() => ({
     { name: 'description', content: post.value?.excerpt || 'Read this blog post on Nguyen Hung\'s portfolio.' },
     { property: 'og:title', content: post.value ? `${post.value.title} | Blog | Nguyen Hung` : 'Blog Post' },
     { property: 'og:description', content: post.value?.excerpt || 'Read this blog post on Nguyen Hung\'s portfolio.' },
-    { property: 'og:image', content: post.value?.cover_image_url || '' },
+    { property: 'og:image', content: post.value?.cover_image_url || '/default-og.png' },
+    { property: 'og:url', content: window.location.href },
+    { property: 'og:type', content: 'article' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ],
 })))
@@ -172,22 +162,6 @@ const fetchPost = async () => {
   } finally {
     loading.value = false
   }
-}
-
-const shareOnTwitter = () => {
-  const url = window.location.href
-  const text = `Check out this post: ${post.value?.title}`
-  window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank')
-}
-
-const shareOnLinkedIn = () => {
-  const url = window.location.href
-  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank')
-}
-
-const copyLink = () => {
-  navigator.clipboard.writeText(window.location.href)
-  alert('Link copied to clipboard!')
 }
 
 onMounted(fetchPost)
