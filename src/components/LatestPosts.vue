@@ -16,7 +16,7 @@ const fetchLatestPosts = async () => {
       .select('*')
       .eq('published', true)
       .order('published_at', { ascending: false })
-      .limit(4) // Fetch 4 to fill a 2x2 grid nicely
+      .limit(4)
 
     if (error) throw error
     posts.value = data || []
@@ -49,7 +49,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="targetRef" class="py-20 border-t border-gray-100 dark:border-gray-800">
+  <section ref="targetRef" class="py-20">
     <!-- Header -->
     <div 
       class="flex items-center justify-between mb-10 transition-all duration-700 transform"
@@ -87,7 +87,7 @@ onMounted(() => {
       >
         <RouterLink 
           :to="{ name: 'blog-detail', params: { slug: post.slug } }"
-          class="group block p-6 rounded-2xl border-[0.5px] border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-500/30 transition-all duration-300 h-full"
+          class="group block p-6 rounded-2xl border-[0.5px] border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-400/50 hover:-translate-y-2 transition-all duration-300 h-full"
         >
           <div class="flex flex-col h-full">
             <div class="flex items-center justify-between mb-3">
@@ -114,7 +114,7 @@ onMounted(() => {
               <span class="text-[11px] text-gray-400 dark:text-gray-500">
                 {{ calculateReadingTime(post.content) }} đọc
               </span>
-              <span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-700"></span>
+              <span class="w-1 h-1 rounded-full bg-gray-200 dark:bg-gray-700"></span>
               <span class="text-[11px] font-medium text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">
                 Đọc tiếp →
               </span>
@@ -131,7 +131,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Ensure 0.5px border feel */
 .border-\[0\.5px\] {
   border-width: 0.5px;
 }

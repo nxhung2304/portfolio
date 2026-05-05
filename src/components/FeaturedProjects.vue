@@ -34,7 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="targetRef" class="py-12 border-t border-gray-100 dark:border-gray-800">
+  <section ref="targetRef" class="py-12">
     <!-- Header -->
     <div 
       class="flex items-center justify-between mb-8 transition-all duration-700 transform"
