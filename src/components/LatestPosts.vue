@@ -16,7 +16,7 @@ const fetchLatestPosts = async () => {
       .select('*')
       .eq('published', true)
       .order('published_at', { ascending: false })
-      .limit(3)
+      .limit(4) // Fetch 4 to fill a 2x2 grid nicely
 
     if (error) throw error
     posts.value = data || []
@@ -49,62 +49,77 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="targetRef" class="py-12 border-t border-gray-100 dark:border-gray-800">
+  <section ref="targetRef" class="py-20 border-t border-gray-100 dark:border-gray-800">
     <!-- Header -->
     <div 
-      class="flex items-center justify-between mb-8 transition-all duration-700 transform"
+      class="flex items-center justify-between mb-10 transition-all duration-700 transform"
       :class="[isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
     >
-      <h2 class="text-[18px] font-semibold text-gray-900 dark:text-white">Bài viết mới</h2>
+      <div class="space-y-1">
+        <h2 class="text-[20px] font-bold text-gray-900 dark:text-white">Bài viết mới nhất</h2>
+        <p class="text-[13px] text-gray-500 dark:text-gray-400">Chia sẻ về công nghệ và kinh nghiệm lập trình</p>
+      </div>
       <RouterLink 
         to="/blog" 
-        class="text-[12px] font-medium text-blue-600 hover:text-blue-700 transition-colors"
+        class="text-[12px] font-medium text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1 group"
       >
-        xem tất cả →
+        Xem tất cả 
+        <span class="group-hover:translate-x-1 transition-transform">→</span>
       </RouterLink>
     </div>
 
     <!-- Skeleton -->
-    <div v-if="loading" class="space-y-3">
-      <div v-for="i in 3" :key="i" class="h-16 bg-gray-50 dark:bg-gray-800/50 rounded-xl animate-pulse"></div>
+    <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div v-for="i in 4" :key="i" class="h-32 bg-gray-50 dark:bg-gray-800/50 rounded-2xl animate-pulse"></div>
     </div>
 
-    <!-- List -->
+    <!-- Grid Layout -->
     <div 
       v-else-if="posts.length > 0" 
-      class="border-[0.5px] border-gray-100 dark:border-gray-800 rounded-[14px] overflow-hidden bg-white dark:bg-gray-900 shadow-sm transition-all duration-700 transform"
-      :class="[isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
-      :style="{ transitionDelay: '100ms' }"
+      class="grid grid-cols-1 lg:grid-cols-2 gap-6"
     >
       <div 
-        v-for="(post, index) in posts" 
+        v-for="(post, i) in posts" 
         :key="post.id"
-        class="group transition-colors hover:bg-blue-50/30 dark:hover:bg-blue-900/10"
+        class="transition-all duration-700 transform"
+        :class="[isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
+        :style="{ transitionDelay: `${(i + 1) * 100}ms` }"
       >
         <RouterLink 
           :to="{ name: 'blog-detail', params: { slug: post.slug } }"
-          class="flex items-center justify-between p-[18px_22px]"
-          :class="[index !== posts.length - 1 ? 'border-b-[0.5px] border-gray-100 dark:border-gray-800' : '']"
+          class="group block p-6 rounded-2xl border-[0.5px] border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-500/30 transition-all duration-300 h-full"
         >
-          <div class="flex-1 min-w-0 pr-4">
-            <h3 class="text-[14px] font-medium text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors truncate mb-1">
-              {{ post.title }}
-            </h3>
-            <div class="flex items-center gap-2">
+          <div class="flex flex-col h-full">
+            <div class="flex items-center justify-between mb-3">
               <span 
                 v-if="post.tags && post.tags[0]"
-                class="text-[11px] font-medium px-2 py-0.5 rounded-[4px] bg-cyan-50 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400"
+                class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-[4px] bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
               >
                 {{ post.tags[0] }}
               </span>
+              <time class="text-[11px] text-gray-400 dark:text-gray-500 font-medium">
+                {{ formatDate(post.published_at) }}
+              </time>
+            </div>
+            
+            <h3 class="text-[15px] font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors line-clamp-2 mb-2 leading-snug">
+              {{ post.title }}
+            </h3>
+            
+            <p class="text-[13px] text-gray-500 dark:text-gray-400 line-clamp-2 mb-4 leading-relaxed">
+              {{ post.excerpt }}
+            </p>
+
+            <div class="mt-auto flex items-center gap-2">
               <span class="text-[11px] text-gray-400 dark:text-gray-500">
                 {{ calculateReadingTime(post.content) }} đọc
               </span>
+              <span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-700"></span>
+              <span class="text-[11px] font-medium text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                Đọc tiếp →
+              </span>
             </div>
           </div>
-          <time class="text-[12px] text-gray-400 dark:text-gray-500 whitespace-nowrap">
-            {{ formatDate(post.published_at) }}
-          </time>
         </RouterLink>
       </div>
     </div>
@@ -119,8 +134,5 @@ onMounted(() => {
 /* Ensure 0.5px border feel */
 .border-\[0\.5px\] {
   border-width: 0.5px;
-}
-.border-b-\[0\.5px\] {
-  border-bottom-width: 0.5px;
 }
 </style>
