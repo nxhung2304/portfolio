@@ -17,7 +17,7 @@ const fetchFeaturedProjects = async () => {
       .select('*')
       .eq('featured', true)
       .order('created_at', { ascending: false })
-      .limit(3)
+      .limit(2) // Changed to 2 for 2-column layout
 
     if (error) throw error
     projects.value = data || []
@@ -54,12 +54,12 @@ onMounted(() => {
     </div>
 
     <!-- Grid -->
-    <div v-if="loading" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div v-for="i in 3" :key="i" class="h-64 bg-gray-50 dark:bg-gray-800/50 rounded-2xl animate-pulse"></div>
+    <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div v-for="i in 2" :key="i" class="h-64 bg-gray-50 dark:bg-gray-800/50 rounded-2xl animate-pulse"></div>
     </div>
 
     <div v-else-if="projects.length > 0" 
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      class="grid grid-cols-1 md:grid-cols-2 gap-8"
     >
       <div 
         v-for="(project, i) in projects" 

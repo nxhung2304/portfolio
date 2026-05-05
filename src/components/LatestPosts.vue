@@ -16,7 +16,7 @@ const fetchLatestPosts = async () => {
       .select('*')
       .eq('published', true)
       .order('published_at', { ascending: false })
-      .limit(3) // Changed to 3 for 3-column layout
+      .limit(2) // Changed back to 2
 
     if (error) throw error
     posts.value = data || []
@@ -69,14 +69,14 @@ onMounted(() => {
     </div>
 
     <!-- Skeleton -->
-    <div v-if="loading" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div v-for="i in 3" :key="i" class="h-32 bg-gray-50 dark:bg-gray-800/50 rounded-2xl animate-pulse"></div>
+    <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div v-for="i in 2" :key="i" class="h-32 bg-gray-50 dark:bg-gray-800/50 rounded-2xl animate-pulse"></div>
     </div>
 
     <!-- Grid Layout -->
     <div 
       v-else-if="posts.length > 0" 
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      class="grid grid-cols-1 md:grid-cols-2 gap-8"
     >
       <div 
         v-for="(post, i) in posts" 
