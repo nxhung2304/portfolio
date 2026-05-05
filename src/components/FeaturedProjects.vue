@@ -60,7 +60,6 @@ onMounted(() => {
 
     <div v-else-if="projects.length > 0" 
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      :class="projects.length === 2 ? 'lg:max-w-[66%] lg:mx-auto' : ''"
     >
       <div 
         v-for="(project, i) in projects" 
