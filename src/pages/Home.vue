@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import HeroCanvas from '../components/HeroCanvas.vue'
 import TerminalText from '../components/TerminalText.vue'
+import TechStack from '../components/TechStack.vue'
 import FeaturedProjects from '../components/FeaturedProjects.vue'
 import LatestPosts from '../components/LatestPosts.vue'
 import { useScrollReveal } from '../composables/useScrollReveal'
@@ -88,6 +89,7 @@ const { targetRef: heroRef, isVisible: heroVisible } = useScrollReveal()
 
     <!-- Content Sections -->
     <div class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-32">
+      <TechStack />
       <FeaturedProjects />
       <LatestPosts />
     </div>
