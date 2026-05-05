@@ -81,7 +81,7 @@
       <!-- Social Share Section -->
       <footer class="pt-8 border-t border-gray-100">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-          <SocialShare v-if="post" :title="post.title" :url="window.location.href" />
+          <SocialShare v-if="post" :title="post.title" :url="currentUrl" />
           <router-link to="/blog" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
             Read more articles →
           </router-link>
@@ -124,6 +124,10 @@ const post = ref<Post | null>(null)
 const loading = ref(true)
 const error = ref<Error | null>(null)
 
+const currentUrl = computed(() => {
+  return typeof window !== 'undefined' ? window.location.href : ''
+})
+
 const renderedContent = computed(() => {
   return post.value?.content ? md.render(post.value.content) : ''
 })
@@ -136,7 +140,7 @@ useHead(computed(() => ({
     { property: 'og:title', content: post.value ? `${post.value.title} | Blog | Nguyen Hung` : 'Blog Post' },
     { property: 'og:description', content: post.value?.excerpt || 'Read this blog post on Nguyen Hung\'s portfolio.' },
     { property: 'og:image', content: post.value?.cover_image_url || '/default-og.png' },
-    { property: 'og:url', content: window.location.href },
+    { property: 'og:url', content: currentUrl.value },
     { property: 'og:type', content: 'article' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ],
