@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useHead } from '@vueuse/head'
 import HeroCanvas from '../components/HeroCanvas.vue'
 import TerminalText from '../components/TerminalText.vue'
 import TechStack from '../components/TechStack.vue'
@@ -7,6 +8,18 @@ import LatestPosts from '../components/LatestPosts.vue'
 import { useScrollReveal } from '../composables/useScrollReveal'
 
 const { targetRef: heroRef, isVisible: heroVisible } = useScrollReveal()
+
+useHead({
+  title: 'Home | Nguyễn Xuân Hùng - Senior Software Engineer',
+  meta: [
+    { name: 'description', content: 'Portfolio of Nguyễn Xuân Hùng, a Senior Software Engineer specializing in full-stack development, cloud architecture, and modern web experiences.' },
+    { property: 'og:title', content: 'Nguyễn Xuân Hùng | Senior Software Engineer' },
+    { property: 'og:description', content: 'Explore my projects, blog posts, and technical expertise in building scalable systems.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:image', content: '/og-image.jpg' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ]
+})
 </script>
 
 <template>

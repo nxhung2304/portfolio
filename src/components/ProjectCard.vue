@@ -20,6 +20,7 @@
         v-if="project.thumbnail_url"
         :src="project.thumbnail_url"
         :alt="project.title"
+        loading="lazy"
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       />
       <div
