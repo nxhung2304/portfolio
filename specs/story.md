@@ -81,32 +81,32 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 - [x] Add loading state while fetching
 
 ### Task 3.2: Projects list - Filtering by technology
-- [ ] Extract unique tech tags from all projects
-- [ ] Create filter UI (buttons or dropdown)
-- [ ] Implement tag filtering (show only projects with selected tag)
-- [ ] Clear/reset filters
-- [ ] Show "no results" when no projects match
+- [x] Extract unique tech tags from all projects
+- [x] Create filter UI (buttons or dropdown)
+- [x] Implement tag filtering (show only projects with selected tag)
+- [x] Clear/reset filters
+- [x] Show "no results" when no projects match
 
 ### Task 3.3: Project detail page - Markdown & content
-- [ ] Create ProjectDetail.vue page at `/projects/:slug` route
-- [ ] Fetch single project by slug from Supabase
-- [ ] Render project content as markdown (using markdown-it or marked)
-- [ ] Display project metadata (title, tags, created_at)
-- [ ] Add 404 handling for invalid slugs
+- [x] Create ProjectDetail.vue page at `/projects/:slug` route
+- [x] Fetch single project by slug from Supabase
+- [x] Render project content as markdown (using markdown-it or marked)
+- [x] Display project metadata (title, tags, created_at)
+- [x] Add 404 handling for invalid slugs
 
 ### Task 3.4: Project detail page - Links & media
-- [ ] Display GitHub link (clickable, with icon)
-- [ ] Display live demo link (clickable, with icon)
-- [ ] Display project thumbnail/cover image
-- [ ] Implement image lazy-loading
-- [ ] Add social share buttons (or prepare for Phase 7)
+- [x] Display GitHub link (clickable, with icon)
+- [x] Display live demo link (clickable, with icon)
+- [x] Display project thumbnail/cover image
+- [x] Implement image lazy-loading
+- [x] Add social share buttons (or prepare for Phase 7)
 
 ### Task 3.5: Projects - SEO & data management
-- [ ] Add dynamic SEO meta tags per project (title, description, og:image=thumbnail)
-- [ ] Populate sample project data in Supabase
-- [ ] Add featured projects highlighting on list
-- [ ] Verify accessibility (semantic HTML, alt text)
-- [ ] Test featured filtering works
+- [x] Add dynamic SEO meta tags per project (title, description, og:image=thumbnail)
+- [x] Populate sample project data in Supabase
+- [x] Add featured projects highlighting on list
+- [x] Verify accessibility (semantic HTML, alt text)
+- [x] Test featured filtering works
 
 ---
 
@@ -115,38 +115,38 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 > Design reference: [`specs/design/blog.jsx`](design/blog.jsx) — includes list page (search, tag filter, featured post) and detail page (markdown rendering, reading progress, share, related posts)
 
 ### Task 4.1: Blog list - Fetching & pagination
-- [ ] Create BlogList.vue page at `/blog` route
-- [ ] Fetch published posts (published=true) from Supabase
-- [ ] Display posts with: title, excerpt, publish date, tags
-- [ ] Implement pagination or infinite scroll
-- [ ] Add loading state
+- [x] Create BlogList.vue page at `/blog` route
+- [x] Fetch published posts (published=true) from Supabase
+- [x] Display posts with: title, excerpt, publish date, tags
+- [x] Implement pagination or infinite scroll
+- [x] Add loading state
 
 ### Task 4.2: Blog list - Search functionality
-- [ ] Create search input field
-- [ ] Implement search by post title and excerpt
-- [ ] Show "no results" when no match
-- [ ] Combine search + pagination
+- [x] Create search input field
+- [x] Implement search by post title and excerpt
+- [x] Show "no results" when no match
+- [x] Combine search + pagination
 
 ### Task 4.3: Blog list - Tag filtering
-- [ ] Extract unique tags from all posts
-- [ ] Create tag filter UI
-- [ ] Implement tag-based filtering
-- [ ] Allow combined search + tag filter
-- [ ] Show active filters
+- [x] Extract unique tags from all posts
+- [x] Create tag filter UI
+- [x] Implement tag-based filtering
+- [x] Allow combined search + tag filter
+- [x] Show active filters
 
 ### Task 4.4: Blog detail page - Markdown rendering
-- [ ] Create BlogDetail.vue page at `/blog/:slug` route
-- [ ] Fetch single post by slug from Supabase
-- [ ] Render post content as markdown (markdown-it or marked)
-- [ ] Display post metadata (title, excerpt, publish date, tags)
-- [ ] Add 404 handling for invalid slugs
+- [x] Create BlogDetail.vue page at `/blog/:slug` route
+- [x] Fetch single post by slug from Supabase
+- [x] Render post content as markdown (markdown-it or marked)
+- [x] Display post metadata (title, excerpt, publish date, tags)
+- [x] Add 404 handling for invalid slugs
 
 ### Task 4.5: Blog detail page - Sharing & SEO
-- [ ] Add social sharing buttons (Twitter, LinkedIn, copy link)
-- [ ] Add cover image display (if available)
-- [ ] Add dynamic SEO meta tags per post (title, description, og:image=cover_image_url)
-- [ ] Populate sample blog post data in Supabase
-- [ ] Verify accessibility
+- [x] Add social sharing buttons (Twitter, LinkedIn, copy link)
+- [x] Add cover image display (if available)
+- [x] Add dynamic SEO meta tags per post (title, description, og:image=cover_image_url)
+- [x] Populate sample blog post data in Supabase
+- [x] Verify accessibility
 
 ---
 
@@ -155,30 +155,30 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 > Design reference: [`specs/design/home.jsx`](design/home.jsx) — hero with animated canvas + terminal text, featured projects grid, latest posts list, tech stack badges
 
 ### Task 5.1: Home page - Hero section
-- [ ] Create Home.vue page at `/` route
-- [ ] Build hero section with: name, tagline, avatar, CTA buttons
-- [ ] Style responsive hero (mobile-first)
-- [ ] Add smooth animations to hero content
+- [x] Create Home.vue page at `/` route
+- [x] Build hero section with: name, tagline, avatar, CTA buttons
+- [x] Style responsive hero (mobile-first)
+- [x] Add smooth animations to hero content
 
 ### Task 5.2: Home page - Featured projects & latest posts
-- [ ] Create featured projects section (fetch top 3–4 projects where featured=true)
-- [ ] Display each as card with thumbnail, title, short desc
-- [ ] Create latest posts section (fetch 2–3 most recent published posts)
-- [ ] Display each as card with title, excerpt, publish date
-- [ ] Add links to /projects and /blog list pages
+- [x] Create featured projects section (fetch top 3–4 projects where featured=true)
+- [x] Display each as card with thumbnail, title, short desc
+- [x] Create latest posts section (fetch 2–3 most recent published posts)
+- [x] Display each as card with title, excerpt, publish date
+- [x] Add links to /projects and /blog list pages
 
 ### Task 5.3: Home page - Tech stack showcase
-- [ ] Create tech stack section (grid or marquee layout)
-- [ ] Display icons for technologies (Vue, React, Node, PostgreSQL, Tailwind, etc.)
-- [ ] Ensure responsive on mobile
-- [ ] Add smooth animations
+- [x] Create tech stack section (grid or marquee layout)
+- [x] Display icons for technologies (Vue, React, Node, PostgreSQL, Tailwind, etc.)
+- [x] Ensure responsive on mobile
+- [x] Add smooth animations
 
 ### Task 5.4: Home page - Performance & SEO
-- [ ] Verify no N+1 queries to Supabase (use batch fetch if needed)
-- [ ] Implement lazy-loading for images in featured sections
-- [ ] Add dynamic SEO meta tags (title, description, og:image)
-- [ ] Test page load performance
-- [ ] Verify all links work
+- [x] Verify no N+1 queries to Supabase (use batch fetch if needed)
+- [x] Implement lazy-loading for images in featured sections
+- [x] Add dynamic SEO meta tags (title, description, og:image)
+- [x] Test page load performance
+- [x] Verify all links work
 
 ---
 
