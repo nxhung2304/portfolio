@@ -12,7 +12,7 @@ function toggleLanguage() {
 <template>
   <button
     @click="toggleLanguage"
-    class="px-2 py-1 text-sm font-medium transition-colors rounded-md hover:bg-white/10 text-white/80 hover:text-white border border-white/20"
+    class="px-2 py-1 text-xs font-bold transition-all rounded-md border border-gray-200 text-gray-600 hover:border-indigo-600 hover:text-indigo-600 hover:bg-indigo-50"
   >
     {{ locale.toUpperCase() }}
   </button>
