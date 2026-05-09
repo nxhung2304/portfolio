@@ -25,8 +25,8 @@
           hệ thống đơn giản nhưng mạnh mẽ, tự động hóa mọi thứ có thể, và chia sẻ kiến thức với cộng đồng.
         </p>
         <a 
-          href="/cv.pdf" 
-          download 
+          href="/nxhung-cv.pdf"
+          download="nxhung-cv.pdf"
           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 transition-all duration-300 text-sm font-medium"
           aria-label="Download CV (PDF)"
         >
