@@ -193,75 +193,33 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 - [x] Show error messages per field
 - [x] Style form responsively (mobile-first)
 
-### Task 6.2: Contact form - Submission & storage
-- [ ] Implement form submission handler
-- [ ] Insert valid submissions into Supabase `contacts` table
-- [ ] Handle Supabase errors gracefully
-- [ ] Show success message after submission
-- [ ] Clear form after successful submission
-
-### Task 6.3: Contact page - Social links & SEO
+### Task 6.2: Contact page - Social links & SEO
 - [ ] Display social media links (GitHub, LinkedIn, Twitter, email)
 - [ ] Make links clickable and accessible
 - [ ] Add icons for social media
 - [ ] Add dynamic SEO meta tags (title, description)
 - [ ] Verify accessibility (form labels, ARIA attributes, keyboard nav)
 
+### Task 6.3: Add content to CV
+- Currently, content in CV is placeholder
+- Source of content
+    - Supabase?
+    - Import file?
+    - Content fix in source code?
+
 ---
 
 ## Phase 7: Refinements
+### Task 7.1: Add i18n
+- Support English / Vietnames
+- Toggle language in left of header
 
-### Task 7.1: Dark mode toggle
+### Task 7.2: Dark mode toggle
 - [ ] Create dark mode toggle in Header/Nav
 - [ ] Implement light/dark theme CSS (Tailwind dark: modifier)
 - [ ] Persist dark mode preference in localStorage
 - [ ] Apply dark theme to all pages
 - [ ] Test on all pages
-
-### Task 7.2: Animations & transitions
-- [ ] Add smooth page transitions between routes (Vue Router)
-- [ ] Add subtle hover effects to interactive elements (buttons, links, cards)
-- [ ] Add entrance animations to sections (fade-in, slide-up)
-- [ ] Ensure animations are performant (no jank)
-
-### Task 7.3: Image optimization & lazy-loading
-- [ ] Implement lazy-loading for all images (native loading="lazy" or Intersection Observer)
-- [ ] Optimize image sizes (use smaller thumbnails, responsive images)
-- [ ] Test lazy-loading in browser DevTools
-- [ ] Verify images load correctly on slow network
-
-### Task 7.4: Code splitting & bundling
-- [ ] Verify route-based code splitting (separate chunks per route)
-- [ ] Check bundle size with build analyzer
-- [ ] Optimize Supabase client (tree-shake unused features)
-- [ ] Test bundle size acceptable
-
-### Task 7.5: Performance optimization
-- [ ] Run Lighthouse audit on all pages
-- [ ] Fix performance issues (target > 90 on all pages)
-- [ ] Optimize CSS delivery (critical path)
-- [ ] Minify and compress assets
-- [ ] Test on slow 3G network (DevTools)
-
-### Task 7.6: Analytics & monitoring
-- [ ] Integrate Vercel Analytics or Umami
-- [ ] Track page views on all routes
-- [ ] Track interactions (button clicks, form submissions)
-- [ ] Test analytics dashboard shows data
-
-### Task 7.7: Accessibility polish
-- [ ] Run accessibility audit (Axe, Lighthouse)
-- [ ] Fix WCAG 2.1 AA compliance issues
-- [ ] Test with keyboard navigation (Tab, Enter, Escape)
-- [ ] Test with screen reader (VoiceOver or NVDA)
-- [ ] Improve focus management on modals/dialogs (if any)
-
-### Task 7.8: Cross-device testing
-- [ ] Test on iPhone, iPad, Android, Desktop
-- [ ] Verify responsive design (all breakpoints)
-- [ ] Test all features work on mobile (forms, links, nav)
-- [ ] Fix any platform-specific issues
-- [ ] Verify no 404s or broken links
 
 ---
 
