@@ -9,121 +9,38 @@
       <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
         Liên hệ
       </h1>
-      <p class="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-        Có dự án muốn hợp tác? Hay chỉ muốn nói chuyện về tech? Mình luôn sẵn sàng.
-      </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-      <!-- Contact Form Section -->
-      <div 
-        ref="formRef"
-        class="transition-all duration-1000 transform"
-        :class="[formVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
-      >
-        <div v-if="sent" class="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 text-center h-full flex flex-col items-center justify-center shadow-sm">
-          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-cyan-500 flex items-center justify-center mb-6 animate-bounce">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Đã gửi thành công!</h3>
-          <p class="text-gray-600 dark:text-gray-400 mb-6">Cảm ơn bạn đã liên hệ. Mình sẽ phản hồi trong vòng 24 giờ.</p>
-          <button 
-            @click="resetForm"
-            class="px-6 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 text-blue-600 dark:text-blue-400 transition-colors"
-          >
-            Gửi tin nhắn khác
-          </button>
-        </div>
-
-        <div v-else class="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-sm">
-          <h2 class="text-xl font-bold mb-8">Gửi tin nhắn</h2>
-          
-          <form @submit.prevent="handleSubmit" class="space-y-6">
-            <!-- Name Field -->
-            <div>
-              <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">Tên</label>
-              <input 
-                id="name"
-                v-model="form.name"
-                type="text"
-                placeholder="Tên của bạn"
-                class="w-full bg-transparent border rounded-xl px-4 py-3 outline-none transition-all duration-300 dark:text-white"
-                :class="errors.name ? 'border-red-500 focus:ring-2 focus:ring-red-500/20' : 'border-gray-200 dark:border-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20'"
-              />
-              <p v-if="errors.name" class="mt-2 text-sm text-red-500">{{ errors.name }}</p>
-            </div>
-
-            <!-- Email Field -->
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">Email</label>
-              <input 
-                id="email"
-                v-model="form.email"
-                type="email"
-                placeholder="email@example.com"
-                class="w-full bg-transparent border rounded-xl px-4 py-3 outline-none transition-all duration-300 dark:text-white"
-                :class="errors.email ? 'border-red-500 focus:ring-2 focus:ring-red-500/20' : 'border-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20'"
-              />
-              <p v-if="errors.email" class="mt-2 text-sm text-red-500">{{ errors.email }}</p>
-            </div>
-
-            <!-- Message Field -->
-            <div>
-              <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">Nội dung</label>
-              <textarea 
-                id="message"
-                v-model="form.message"
-                rows="5"
-                placeholder="Mình muốn hợp tác về..."
-                class="w-full bg-transparent border rounded-xl px-4 py-3 outline-none transition-all duration-300 resize-none dark:text-white"
-                :class="errors.message ? 'border-red-500 focus:ring-2 focus:ring-red-500/20' : 'border-gray-200 dark:border-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20'"
-              ></textarea>
-              <p v-if="errors.message" class="mt-2 text-sm text-red-500">{{ errors.message }}</p>
-            </div>
-
-            <button 
-              type="submit"
-              :disabled="sending"
-              class="w-full py-4 rounded-xl font-bold transition-all duration-300 transform active:scale-[0.98] flex items-center justify-center gap-2"
-              :class="isFormValid ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-500/20 hover:-translate-y-1' : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 cursor-not-allowed'"
-            >
-              <template v-if="sending">
-                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Đang gửi...
-              </template>
-              <template v-else>
-                Gửi tin nhắn
-              </template>
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <!-- Social Links Section -->
-      <div 
-        ref="socialRef"
-        class="transition-all duration-1000 delay-200 transform"
-        :class="[socialVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
-      >
-        <h2 class="text-xl font-bold mb-6">Kết nối</h2>
+    <!-- Social Links Section -->
+    <div
+      ref="socialRef"
+      class="max-w-2xl mx-auto mb-20 transition-all duration-1000 delay-200 transform"
+      :class="[socialVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
+    >
         <div class="space-y-4 mb-8">
-          <a 
-            v-for="social in socials" 
+          <a
+            v-for="social in socials"
             :key="social.name"
             :href="social.link"
             target="_blank"
             class="flex items-center gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300 group"
           >
-            <div 
-              class="w-12 h-12 rounded-xl flex items-center justify-center text-xl transition-colors"
+            <div
+              class="w-12 h-12 rounded-xl flex items-center justify-center transition-colors flex-shrink-0"
               :style="{ backgroundColor: social.color + '10', color: social.color }"
             >
-              <i :class="social.icon"></i>
+              <!-- GitHub Icon -->
+              <svg v-if="social.name === 'GitHub'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              <!-- LinkedIn Icon -->
+              <svg v-else-if="social.name === 'LinkedIn'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.731-2.004 1.438-.103.25-.129.599-.129.948v5.419h-3.554s.047-8.733 0-9.654h3.554v1.367c.427-.659 1.191-1.598 2.897-1.598 2.117 0 3.704 1.388 3.704 4.374v5.511zM5.337 8.855c-1.144 0-1.915-.762-1.915-1.715 0-.953.771-1.715 1.921-1.715 1.147 0 1.918.762 1.918 1.715 0 .953-.771 1.715-1.924 1.715zm1.582 11.597H3.635V9.453h3.284v10.999zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/>
+              </svg>
+              <!-- Gmail Icon -->
+              <svg v-else-if="social.name === 'Gmail'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
             </div>
             <div class="flex-1">
               <p class="font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{{ social.name }}</p>
@@ -132,19 +49,6 @@
             <span class="text-xs font-mono text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400">{{ social.handle }}</span>
           </a>
         </div>
-
-        <!-- Status Card -->
-        <div class="p-6 rounded-2xl bg-blue-500/5 border border-blue-100 dark:border-blue-900/30">
-          <p class="text-sm font-bold mb-4">Response time</p>
-          <div class="flex items-center gap-3 mb-2">
-            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-            <span class="text-sm text-gray-600 dark:text-gray-400">Thường phản hồi trong 24 giờ</span>
-          </div>
-          <p class="text-xs text-gray-500 leading-relaxed">
-            Timezone: GMT+7 (Việt Nam). Mình check email và messages hàng ngày.
-          </p>
-        </div>
-      </div>
     </div>
 
     <!-- CTA Section -->
@@ -171,128 +75,28 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed } from 'vue'
 import { useScrollReveal } from '../composables/useScrollReveal'
 
 const { targetRef: heroRef, isVisible: heroVisible } = useScrollReveal()
-const { targetRef: formRef, isVisible: formVisible } = useScrollReveal()
 const { targetRef: socialRef, isVisible: socialVisible } = useScrollReveal()
 const { targetRef: ctaRef, isVisible: ctaVisible } = useScrollReveal()
 
-const form = reactive({
-  name: '',
-  email: '',
-  message: ''
-})
-
-const errors = reactive({
-  name: '',
-  email: '',
-  message: ''
-})
-
-const sent = ref(false)
-const sending = ref(false)
-
 const socials = [
-  { 
-    name: 'GitHub', 
-    handle: '@yourname', 
-    desc: 'Open source & side projects', 
-    color: '#333333', 
-    icon: 'fab fa-github',
-    link: 'https://github.com'
+  {
+    name: 'GitHub',
+    handle: 'nxhung2304',
+    desc: 'Open source & side projects',
+    color: '#333333',
+    link: 'https://github.com/nxhung2304'
   },
-  { 
-    name: 'LinkedIn', 
-    handle: 'in/yourname', 
-    desc: 'Professional network', 
-    color: '#0a66c2', 
-    icon: 'fab fa-linkedin',
-    link: 'https://linkedin.com'
-  },
-  { 
-    name: 'Twitter', 
-    handle: '@yourname', 
-    desc: 'Tech thoughts & threads', 
-    color: '#1d9bf0', 
-    icon: 'fab fa-twitter',
-    link: 'https://twitter.com'
-  },
-  { 
-    name: 'Email', 
-    handle: 'hello@yourname.dev', 
-    desc: 'Liên hệ trực tiếp', 
-    color: '#06b6d4', 
-    icon: 'fas fa-envelope',
-    link: 'mailto:hello@yourname.dev'
+  {
+    name: 'Gmail',
+    handle: 'mongtamquoc2015@gmail.com',
+    desc: 'Liên hệ trực tiếp',
+    color: '#06b6d4',
+    link: 'mailto:mongtamquoc2015@gmail.com'
   }
 ]
-
-const validateEmail = (email: string) => {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-}
-
-const validate = () => {
-  let isValid = true
-  
-  if (!form.name.trim()) {
-    errors.name = 'Tên không được để trống.'
-    isValid = false
-  } else {
-    errors.name = ''
-  }
-  
-  if (!form.email.trim()) {
-    errors.email = 'Email không được để trống.'
-    isValid = false
-  } else if (!validateEmail(form.email)) {
-    errors.email = 'Định dạng email không hợp lệ.'
-    isValid = false
-  } else {
-    errors.email = ''
-  }
-  
-  if (!form.message.trim()) {
-    errors.message = 'Nội dung không được để trống.'
-    isValid = false
-  } else {
-    errors.message = ''
-  }
-  
-  return isValid
-}
-
-const isFormValid = computed(() => {
-  return form.name.trim() && form.email.trim() && validateEmail(form.email) && form.message.trim()
-})
-
-const handleSubmit = async () => {
-  if (!validate()) return
-  
-  sending.value = true
-  
-  // Simulation of submission - Supabase integration will be in Task 6.2
-  try {
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    sent.value = true
-    // Task 6.2: submit to Supabase
-  } catch (error) {
-    console.error('Submission failed:', error)
-  } finally {
-    sending.value = false
-  }
-}
-
-const resetForm = () => {
-  form.name = ''
-  form.email = ''
-  form.message = ''
-  errors.name = ''
-  errors.email = ''
-  errors.message = ''
-  sent.value = false
-}
 </script>
 
 <style scoped>

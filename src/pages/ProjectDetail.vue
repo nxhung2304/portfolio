@@ -33,7 +33,6 @@
         to="/projects"
         class="px-6 py-2 rounded-lg bg-gray-900 text-white hover:bg-black transition-all font-medium inline-block"
       >
-        View all projects
       </router-link>
     </div>
 
