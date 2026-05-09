@@ -2,12 +2,9 @@
   <header class="bg-white border-b border-gray-200 sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <div class="flex items-center gap-4">
-          <LanguageToggle />
-          <RouterLink to="/" class="flex items-center gap-2 font-bold text-xl text-gray-900 hover:text-indigo-600 transition-colors">
-            <span class="text-indigo-600">&lt;</span>Hung<span class="text-indigo-600">/&gt;</span>
-          </RouterLink>
-        </div>
+        <RouterLink to="/" class="flex items-center gap-2 font-bold text-xl text-gray-900 hover:text-indigo-600 transition-colors">
+          <span class="text-indigo-600">&lt;</span>Hung<span class="text-indigo-600">/&gt;</span>
+        </RouterLink>
 
         <nav class="hidden md:flex items-center gap-1">
           <RouterLink
@@ -22,7 +19,11 @@
           </RouterLink>
         </nav>
 
-        <Navbar />
+        <div class="flex items-center gap-2">
+          <Navbar />
+          <div class="h-6 w-[1px] bg-gray-200 hidden md:block mx-1"></div>
+          <LanguageToggle />
+        </div>
       </div>
     </div>
   </header>
