@@ -93,7 +93,7 @@ const socials = [
     name: 'Gmail',
     handle: 'mongtamquoc2015@gmail.com',
     desc: 'Liên hệ trực tiếp',
-    color: '#06b6d4',
+    color: '#EA4335',
     link: 'mailto:mongtamquoc2015@gmail.com'
   }
 ]
