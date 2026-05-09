@@ -187,11 +187,11 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 > Design reference: [`specs/design/contact.jsx`](design/contact.jsx) — contact form with validation + success state, social links panel, response time indicator, CTA banner
 
 ### Task 6.1: Contact form - HTML & validation
-- [ ] Create Contact.vue page at `/contact` route
-- [ ] Build form with: name, email, message fields
-- [ ] Add form validation (required fields, valid email format)
-- [ ] Show error messages per field
-- [ ] Style form responsively (mobile-first)
+- [x] Create Contact.vue page at `/contact` route
+- [x] Build form with: name, email, message fields
+- [x] Add form validation (required fields, valid email format)
+- [x] Show error messages per field
+- [x] Style form responsively (mobile-first)
 
 ### Task 6.2: Contact form - Submission & storage
 - [ ] Implement form submission handler
