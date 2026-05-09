@@ -23,6 +23,8 @@
             :key="social.name"
             :href="social.link"
             target="_blank"
+            rel="noopener noreferrer"
+            :aria-label="`Ghé thăm ${social.name} - ${social.handle}`"
             class="flex items-center gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300 group"
           >
             <div
@@ -36,6 +38,10 @@
               <!-- LinkedIn Icon -->
               <svg v-else-if="social.name === 'LinkedIn'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.731-2.004 1.438-.103.25-.129.599-.129.948v5.419h-3.554s.047-8.733 0-9.654h3.554v1.367c.427-.659 1.191-1.598 2.897-1.598 2.117 0 3.704 1.388 3.704 4.374v5.511zM5.337 8.855c-1.144 0-1.915-.762-1.915-1.715 0-.953.771-1.715 1.921-1.715 1.147 0 1.918.762 1.918 1.715 0 .953-.771 1.715-1.924 1.715zm1.582 11.597H3.635V9.453h3.284v10.999zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/>
+              </svg>
+              <!-- Twitter (X) Icon -->
+              <svg v-else-if="social.name === 'Twitter'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
               </svg>
               <!-- Gmail Icon -->
               <svg v-else-if="social.name === 'Gmail'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -63,10 +69,10 @@
         Mình luôn open cho các cơ hội thú vị. Hãy kết nối nhé!
       </p>
       <div class="flex flex-wrap justify-center gap-4 relative z-10">
-        <a href="/cv.pdf" target="_blank" class="px-8 py-3 bg-white/20 backdrop-blur-md border border-white/30 rounded-xl font-bold hover:bg-white/30 transition-all">
+        <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-white/20 backdrop-blur-md border border-white/30 rounded-xl font-bold hover:bg-white/30 transition-all">
           Xem CV ↓
         </a>
-        <a href="https://linkedin.com" target="_blank" class="px-8 py-3 bg-white text-blue-600 rounded-xl font-bold hover:shadow-xl hover:-translate-y-1 transition-all">
+        <a href="https://linkedin.com/in/hung-nguyen-xuan" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-white text-blue-600 rounded-xl font-bold hover:shadow-xl hover:-translate-y-1 transition-all">
           LinkedIn ↗
         </a>
       </div>
@@ -75,7 +81,17 @@
 </template>
 
 <script setup lang="ts">
+import { useHead } from '@vueuse/head'
 import { useScrollReveal } from '../composables/useScrollReveal'
+
+useHead({
+  title: 'Liên hệ | Hung Nguyen',
+  meta: [
+    { name: 'description', content: 'Kết nối với Hung Nguyen - Full Stack & DevOps Engineer qua GitHub, LinkedIn, Twitter hoặc Email.' },
+    { property: 'og:title', content: 'Liên hệ | Hung Nguyen' },
+    { property: 'og:description', content: 'Kết nối với Hung Nguyen - Full Stack & DevOps Engineer.' },
+  ],
+})
 
 const { targetRef: heroRef, isVisible: heroVisible } = useScrollReveal()
 const { targetRef: socialRef, isVisible: socialVisible } = useScrollReveal()
@@ -90,6 +106,20 @@ const socials = [
     link: 'https://github.com/nxhung2304'
   },
   {
+    name: 'LinkedIn',
+    handle: 'hung-nguyen-xuan',
+    desc: 'Professional network',
+    color: '#0077B5',
+    link: 'https://linkedin.com/in/hung-nguyen-xuan'
+  },
+  {
+    name: 'Twitter',
+    handle: '@nxhung2304',
+    desc: 'Updates & tech thoughts',
+    color: '#000000',
+    link: 'https://x.com/nxhung2304'
+  },
+  {
     name: 'Gmail',
     handle: 'mongtamquoc2015@gmail.com',
     desc: 'Liên hệ trực tiếp',
@@ -98,6 +128,11 @@ const socials = [
   }
 ]
 </script>
+
+<style scoped>
+/* Any specific page transitions or additional custom styles can go here */
+</style>
+
 
 <style scoped>
 /* Any specific page transitions or additional custom styles can go here */
