@@ -211,9 +211,55 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
 ## Phase 7: Refinements
 ### Task 7.1: Add i18n
 - Support English / Vietnames
-- Toggle language in left of header
+- Toggle language in right of header
 
-### Task 7.2: Dark mode toggle
+### Task 7.2: Corect content
+- In screens, change content
+- About:
+    2021-2023
+        - cordova + vuejs (mobile)
+          - golf + camp + childrend
+        - vuejs + rails web
+          Create room and equipment mailboxes in Microsoft 365
+
+        2024
+        - Rails
+        - Flutter
+        - Ios native: adap new API
+
+        2025
+        - Flutter Ble
+        - Rails API
+        - Setup: 
+          - Microsoft
+            - OAuth
+            - Classrom API
+          - Google Cloud
+            - OAuth
+            - Classrom API
+        - Ios native
+          - AppFlyer
+            - Setup cloud
+            - Onelink
+
+        2026
+        - Rails API, CRUD
+        - FLutter BLE
+        - Microsoft
+          - B2C
+- Professional Skills
+    - Ref to public/cv-en.html / public/cv-vi.html
+
+
+### Task 7.3: Feedback design
+- Footer
+    - Remove home/about/project/Blog/Contact
+    - COnsider add github, phone, mail
+- Contact:
+    - Remove LinkedIn, Twitter
+
+
+### Task 7.4: Dark mode toggle
 - [ ] Create dark mode toggle in Header/Nav
 - [ ] Implement light/dark theme CSS (Tailwind dark: modifier)
 - [ ] Persist dark mode preference in localStorage

@@ -7,6 +7,10 @@ export default {
     contact: 'Contact'
   },
   home: {
+    meta: {
+      title: 'Home | Nguyễn Xuân Hùng - Senior Software Engineer',
+      description: 'Portfolio of Nguyễn Xuân Hùng, a Senior Software Engineer specializing in full-stack development, cloud architecture, and modern web experiences.'
+    },
     hero: {
       welcome: 'Welcome to my portfolio',
       greeting: 'I\'m',
@@ -32,10 +36,74 @@ export default {
     }
   },
   about: {
+    meta: {
+      title: 'About Me | Nguyen Hung',
+      description: 'Full Stack Developer & DevOps Engineer with over 5 years of experience. Specialized in Vue 3, Node.js, Kubernetes, and AWS.'
+    },
     title: 'About Me',
-    bio: 'Software Engineer based in Ho Chi Minh City, passionate about building high-quality software.'
+    bio: 'Full Stack Developer & DevOps Engineer with over 5 years of experience. I believe in building simple yet powerful systems, automating everything possible, and sharing knowledge with the community.',
+    downloadCv: 'Download CV',
+    stats: {
+      heading: 'Professional Statistics',
+      experience: 'Years of Experience',
+      projects: 'Completed Projects',
+      users: 'Users Served',
+      uptime: 'Uptime Achieved'
+    },
+    timeline: {
+      heading: 'Experience',
+      present: 'present'
+    },
+    skills: {
+      heading: 'Professional Skills'
+    }
+  },
+  projects: {
+    meta: {
+      title: 'Projects | Nguyen Hung',
+      description: 'Portfolio of Nguyen Hung - List of featured projects.'
+    },
+    title: 'Projects',
+    subtitle: 'A list of personal and professional projects I have undertaken. Each project is an opportunity to learn and apply new technologies.',
+    loading: 'Loading projects...',
+    error: 'An error occurred while loading data. Please try again later.',
+    retry: 'Retry',
+    filter: {
+      all: 'All',
+      featured: 'Featured'
+    },
+    empty: 'No projects to show.',
+    noResults: {
+      text: 'No projects found',
+      featured: 'featured',
+      withTag: 'with tag',
+      viewAll: 'View All'
+    }
+  },
+  blog: {
+    meta: {
+      title: 'Blog | Nguyen Hung',
+      description: 'Thoughts, tutorials and insights on software development, design and everything in between.'
+    },
+    title: 'Blog',
+    subtitle: 'Thoughts, tutorials and insights on software development, design and everything in between.',
+    searchPlaceholder: 'Search posts...',
+    filter: {
+      all: 'All Posts',
+      activeTags: 'Active Tags:'
+    },
+    empty: 'No posts yet',
+    noResults: 'No results found',
+    noResultsDesc: 'We couldn\'t find any posts matching your criteria',
+    clearFilters: 'Clear all filters',
+    loadMore: 'Load More Posts',
+    loading: 'Loading...'
   },
   contact: {
+    meta: {
+      title: 'Contact | Hung Nguyen',
+      description: 'Connect with Hung Nguyen - Full Stack & DevOps Engineer via GitHub, LinkedIn, Twitter, or Email.'
+    },
     title: 'Contact',
     socials: {
       github: 'Open source & side projects',

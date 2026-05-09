@@ -21,7 +21,6 @@
 
         <div class="flex items-center gap-2">
           <Navbar />
-          <div class="h-6 w-[1px] bg-gray-200 hidden md:block mx-1"></div>
           <LanguageToggle />
         </div>
       </div>

@@ -2,9 +2,9 @@
   <main class="max-w-6xl mx-auto px-4 sm:px-8 py-12">
     <!-- Header -->
     <section class="mb-12">
-      <h1 class="text-3xl font-bold tracking-tight mb-4">Dự án</h1>
+      <h1 class="text-3xl font-bold tracking-tight mb-4">{{ t('projects.title') }}</h1>
       <p class="text-gray-500 max-w-2xl">
-        Danh sách các dự án cá nhân và công việc mình đã thực hiện. Mỗi dự án là một cơ hội để học hỏi và áp dụng các công nghệ mới.
+        {{ t('projects.subtitle') }}
       </p>
     </section>
 
@@ -28,13 +28,13 @@
       <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 mb-4">
         <span aria-hidden="true">⚠️</span>
       </div>
-      <p class="text-gray-600 mb-6">Đã có lỗi xảy ra khi tải dữ liệu. Vui lòng thử lại sau.</p>
+      <p class="text-gray-600 mb-6">{{ t('projects.error') }}</p>
       <button 
         type="button"
         @click="fetchProjects"
         class="px-5 py-2 rounded-lg bg-gray-900 text-white hover:bg-black transition-all font-medium text-sm"
       >
-        Tải lại
+        {{ t('projects.retry') }}
       </button>
     </div>
 
@@ -46,7 +46,7 @@
         :class="activeTag === null && !onlyFeatured ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
         class="px-3 py-1 rounded-full text-sm font-medium transition-colors"
       >
-        All
+        {{ t('projects.filter.all') }}
       </button>
 
       <div class="h-4 w-px bg-gray-200 mx-1" />
@@ -58,7 +58,7 @@
         class="px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5"
       >
         <span v-if="onlyFeatured">★</span>
-        Featured
+        {{ t('projects.filter.featured') }}
       </button>
 
       <div class="h-4 w-px bg-gray-200 mx-1" />
@@ -80,7 +80,7 @@
       <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 text-gray-300 mb-4">
         <span aria-hidden="true">🔍</span>
       </div>
-      <p class="text-gray-500">Chưa có dự án nào được hiển thị.</p>
+      <p class="text-gray-500">{{ t('projects.empty') }}</p>
     </div>
 
     <!-- Empty State: no match for active filter -->
@@ -89,16 +89,16 @@
         <span aria-hidden="true">🔍</span>
       </div>
       <p class="text-gray-500">
-        Không có dự án nào 
-        <span v-if="onlyFeatured">nổi bật</span>
-        <span v-if="activeTag">với tag <span class="font-medium text-gray-700">{{ activeTag }}</span></span>.
+        {{ t('projects.noResults.text') }} 
+        <span v-if="onlyFeatured">{{ t('projects.noResults.featured') }}</span>
+        <span v-if="activeTag">{{ t('projects.noResults.withTag') }} <span class="font-medium text-gray-700">{{ activeTag }}</span></span>.
       </p>
       <button
         type="button"
         @click="activeTag = null; onlyFeatured = false"
         class="mt-4 px-4 py-2 rounded-lg bg-gray-900 text-white hover:bg-black transition-all font-medium text-sm"
       >
-        Xem tất cả
+        {{ t('projects.noResults.viewAll') }}
       </button>
     </div>
 
@@ -116,17 +116,20 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useHead } from '@vueuse/head'
+import { useI18n } from 'vue-i18n'
 import type { PostgrestError } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
 import type { Project } from '../lib/database.types'
 import ProjectCard from '../components/ProjectCard.vue'
 
+const { t } = useI18n()
+
 useHead({
-  title: 'Projects | Nguyen Hung',
+  title: computed(() => t('projects.meta.title')),
   meta: [
-    { name: 'description', content: 'Portfolio của Nguyen Hung - Danh sách các dự án tiêu biểu.' },
-    { property: 'og:title', content: 'Projects | Nguyen Hung' },
-    { property: 'og:description', content: 'Portfolio của Nguyen Hung - Danh sách các dự án tiêu biểu.' },
+    { name: 'description', content: computed(() => t('projects.meta.description')) },
+    { property: 'og:title', content: computed(() => t('projects.meta.title')) },
+    { property: 'og:description', content: computed(() => t('projects.meta.description')) },
   ],
 })
 

@@ -4,9 +4,9 @@
     <header class="mb-12">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
         <div>
-          <h1 class="text-4xl font-bold text-gray-900 mb-4">Blog</h1>
+          <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ t('blog.title') }}</h1>
           <p class="text-lg text-gray-600 max-w-2xl">
-            Thoughts, tutorials and insights on software development, design and everything in between.
+            {{ t('blog.subtitle') }}
           </p>
         </div>
         
@@ -15,7 +15,7 @@
           <input
             v-model="searchQuery"
             type="text"
-            placeholder="Search posts..."
+            :placeholder="t('blog.searchPlaceholder')"
             class="w-full px-4 py-3 pl-10 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
           />
           <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
@@ -35,7 +35,7 @@
         :class="selectedTags.length === 0 ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
         class="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
       >
-        All Posts
+        {{ t('blog.filter.all') }}
       </button>
 
       <div class="h-4 w-px bg-gray-200 mx-1" />
@@ -54,7 +54,7 @@
 
     <!-- Active Filters -->
     <div v-if="selectedTags.length > 0" class="flex items-center gap-2 mb-6">
-      <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Active Tags:</span>
+      <span class="text-xs font-bold uppercase tracking-wider text-gray-400">{{ t('blog.filter.activeTags') }}</span>
       <div class="flex flex-wrap gap-2">
         <button
           v-for="tag in selectedTags"
@@ -83,17 +83,17 @@
     <div v-else-if="!isLoading" class="text-center py-20 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
       <div class="text-5xl mb-4">{{ debouncedQuery || selectedTags.length > 0 ? '🔍' : '📭' }}</div>
       <h3 class="text-xl font-bold text-gray-900 mb-2">
-        {{ debouncedQuery || selectedTags.length > 0 ? 'No results found' : 'No posts yet' }}
+        {{ debouncedQuery || selectedTags.length > 0 ? t('blog.noResults') : t('blog.empty') }}
       </h3>
       <p class="text-gray-500">
-        {{ debouncedQuery || selectedTags.length > 0 ? "We couldn't find any posts matching your criteria" : 'Check back later for new content!' }}
+        {{ debouncedQuery || selectedTags.length > 0 ? t('blog.noResultsDesc') : (debouncedQuery || selectedTags.length > 0 ? t('blog.noResultsDesc') : t('blog.empty')) }}
       </p>
       <button 
         v-if="debouncedQuery || selectedTags.length > 0"
         @click="clearFilters"
         class="mt-6 text-blue-500 font-medium hover:underline"
       >
-        Clear all filters
+        {{ t('blog.clearFilters') }}
       </button>
     </div>
 
@@ -118,17 +118,30 @@
         :disabled="isLoading"
         class="px-8 py-3 bg-white border border-gray-200 rounded-full font-bold text-gray-900 hover:border-blue-500 hover:text-blue-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {{ isLoading ? 'Loading...' : 'Load More Posts' }}
+        {{ isLoading ? t('blog.loading') : t('blog.loadMore') }}
       </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, computed } from 'vue'
+import { useHead } from '@vueuse/head'
+import { useI18n } from 'vue-i18n'
 import BlogCard from '../components/BlogCard.vue'
 import { supabase } from '../lib/supabase'
 import type { Post } from '../lib/database.types'
+
+const { t } = useI18n()
+
+useHead({
+  title: computed(() => t('blog.meta.title')),
+  meta: [
+    { name: 'description', content: computed(() => t('blog.meta.description')) },
+    { property: 'og:title', content: computed(() => t('blog.meta.title')) },
+    { property: 'og:description', content: computed(() => t('blog.meta.description')) },
+  ],
+})
 
 const posts = ref<Post[]>([])
 const isLoading = ref(true)
