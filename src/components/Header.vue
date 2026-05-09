@@ -2,9 +2,12 @@
   <header class="bg-white border-b border-gray-200 sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <RouterLink to="/" class="flex items-center gap-2 font-bold text-xl text-gray-900 hover:text-indigo-600 transition-colors">
-          <span class="text-indigo-600">&lt;</span>Hung<span class="text-indigo-600">/&gt;</span>
-        </RouterLink>
+        <div class="flex items-center gap-4">
+          <LanguageToggle />
+          <RouterLink to="/" class="flex items-center gap-2 font-bold text-xl text-gray-900 hover:text-indigo-600 transition-colors">
+            <span class="text-indigo-600">&lt;</span>Hung<span class="text-indigo-600">/&gt;</span>
+          </RouterLink>
+        </div>
 
         <nav class="hidden md:flex items-center gap-1">
           <RouterLink
@@ -15,7 +18,7 @@
             active-class="text-indigo-600 bg-indigo-50"
             exact-active-class="text-indigo-600 bg-indigo-50"
           >
-            {{ link.label }}
+            {{ t(link.key) }}
           </RouterLink>
         </nav>
 
@@ -26,6 +29,10 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import Navbar from './Navbar.vue'
+import LanguageToggle from './LanguageToggle.vue'
 import { NAV_LINKS } from '../constants/nav'
+
+const { t } = useI18n()
 </script>

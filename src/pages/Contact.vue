@@ -7,7 +7,7 @@
       :class="[heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
     >
       <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-        Liên hệ
+        {{ t('contact.title') }}
       </h1>
     </div>
 
@@ -64,16 +64,16 @@
       :class="[ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
     >
       <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl group-hover:bg-white/20 transition-colors duration-500"></div>
-      <h3 class="text-2xl font-bold mb-4 relative z-10">Đang tìm Full Stack / DevOps Engineer?</h3>
+      <h3 class="text-2xl font-bold mb-4 relative z-10">{{ t('contact.cta.title') }}</h3>
       <p class="text-white/80 mb-8 max-w-md mx-auto relative z-10">
-        Mình luôn open cho các cơ hội thú vị. Hãy kết nối nhé!
+        {{ t('contact.cta.description') }}
       </p>
       <div class="flex flex-wrap justify-center gap-4 relative z-10">
-        <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-white/20 backdrop-blur-md border border-white/30 rounded-xl font-bold hover:bg-white/30 transition-all">
-          Xem CV ↓
+        <a href="/nxhung-cv.pdf" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-white/20 backdrop-blur-md border border-white/30 rounded-xl font-bold hover:bg-white/30 transition-all">
+          {{ t('contact.cta.viewCv') }}
         </a>
         <a href="https://linkedin.com/in/hung-nguyen-xuan" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-white text-blue-600 rounded-xl font-bold hover:shadow-xl hover:-translate-y-1 transition-all">
-          LinkedIn ↗
+          {{ t('contact.cta.linkedin') }}
         </a>
       </div>
     </div>
@@ -82,7 +82,10 @@
 
 <script setup lang="ts">
 import { useHead } from '@vueuse/head'
+import { useI18n } from 'vue-i18n'
 import { useScrollReveal } from '../composables/useScrollReveal'
+
+const { t } = useI18n()
 
 useHead({
   title: 'Liên hệ | Hung Nguyen',
@@ -101,28 +104,28 @@ const socials = [
   {
     name: 'GitHub',
     handle: 'nxhung2304',
-    desc: 'Open source & side projects',
+    desc: t('contact.socials.github'),
     color: '#333333',
     link: 'https://github.com/nxhung2304'
   },
   {
     name: 'LinkedIn',
     handle: 'hung-nguyen-xuan',
-    desc: 'Professional network',
+    desc: t('contact.socials.linkedin'),
     color: '#0077B5',
     link: 'https://linkedin.com/in/hung-nguyen-xuan'
   },
   {
     name: 'Twitter',
     handle: '@nxhung2304',
-    desc: 'Updates & tech thoughts',
+    desc: t('contact.socials.twitter'),
     color: '#000000',
     link: 'https://x.com/nxhung2304'
   },
   {
     name: 'Gmail',
     handle: 'mongtamquoc2015@gmail.com',
-    desc: 'Liên hệ trực tiếp',
+    desc: t('contact.socials.gmail'),
     color: '#EA4335',
     link: 'mailto:mongtamquoc2015@gmail.com'
   }

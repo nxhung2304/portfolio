@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { supabase } from '../lib/supabase'
 import type { Project } from '../lib/database.types'
 import ProjectCard from './ProjectCard.vue'
 import { useScrollReveal } from '../composables/useScrollReveal'
 
+const { t } = useI18n()
 const projects = ref<Project[]>([])
 const loading = ref(true)
 
@@ -41,14 +43,14 @@ onMounted(() => {
       :class="[isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
     >
       <div class="space-y-1">
-        <h2 class="text-[20px] font-bold text-gray-900 dark:text-white">Dự án tiêu biểu</h2>
-        <p class="text-[13px] text-gray-500 dark:text-gray-400">Những sản phẩm và hệ thống tôi đã xây dựng</p>
+        <h2 class="text-[20px] font-bold text-gray-900 dark:text-white">{{ t('home.featured.title') }}</h2>
+        <p class="text-[13px] text-gray-500 dark:text-gray-400">{{ t('home.featured.subtitle') }}</p>
       </div>
       <RouterLink 
         to="/projects" 
         class="text-[12px] font-medium text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1 group"
       >
-        Xem tất cả 
+        {{ t('home.featured.viewAll') }} 
         <span class="group-hover:translate-x-1 transition-transform">→</span>
       </RouterLink>
     </div>
@@ -76,7 +78,7 @@ onMounted(() => {
     </div>
 
     <div v-else class="text-center py-12 text-gray-500">
-      Chưa có dự án tiêu biểu nào được hiển thị.
+      {{ t('home.featured.empty') }}
     </div>
   </section>
 </template>

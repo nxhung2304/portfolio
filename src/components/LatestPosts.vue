@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { supabase } from '../lib/supabase'
 import type { Post } from '../lib/database.types'
 import { useScrollReveal } from '../composables/useScrollReveal'
 
+const { t } = useI18n()
 const posts = ref<Post[]>([])
 const loading = ref(true)
 
@@ -37,10 +39,10 @@ const formatDate = (dateString: string | null) => {
 }
 
 const calculateReadingTime = (content: string | null) => {
-  if (!content) return '1 phút'
+  if (!content) return `1 ${t('home.latest.minsRead')}`
   const words = content.split(/\s+/).length
   const minutes = Math.ceil(words / 200)
-  return `${minutes} phút`
+  return `${minutes} ${t('home.latest.minsRead')}`
 }
 
 onMounted(() => {
@@ -56,14 +58,14 @@ onMounted(() => {
       :class="[isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
     >
       <div class="space-y-1">
-        <h2 class="text-[20px] font-bold text-gray-900 dark:text-white">Bài viết mới nhất</h2>
-        <p class="text-[13px] text-gray-500 dark:text-gray-400">Chia sẻ về công nghệ và kinh nghiệm lập trình</p>
+        <h2 class="text-[20px] font-bold text-gray-900 dark:text-white">{{ t('home.latest.title') }}</h2>
+        <p class="text-[13px] text-gray-500 dark:text-gray-400">{{ t('home.latest.subtitle') }}</p>
       </div>
       <RouterLink 
         to="/blog" 
         class="text-[12px] font-medium text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1 group"
       >
-        Xem tất cả 
+        {{ t('home.latest.viewAll') }} 
         <span class="group-hover:translate-x-1 transition-transform">→</span>
       </RouterLink>
     </div>
@@ -116,7 +118,7 @@ onMounted(() => {
               </span>
               <span class="w-1 h-1 rounded-full bg-gray-200 dark:bg-gray-700"></span>
               <span class="text-[11px] font-medium text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                Đọc tiếp →
+                {{ t('home.latest.readMore') }} →
               </span>
             </div>
           </div>
@@ -125,7 +127,7 @@ onMounted(() => {
     </div>
 
     <div v-else class="text-center py-12 text-gray-500">
-      Chưa có bài viết nào.
+      {{ t('home.latest.empty') }}
     </div>
   </section>
 </template>
