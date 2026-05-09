@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head'
+import { useI18n } from 'vue-i18n'
 import HeroCanvas from '../components/HeroCanvas.vue'
 import TerminalText from '../components/TerminalText.vue'
 import TechStack from '../components/TechStack.vue'
@@ -7,6 +8,7 @@ import FeaturedProjects from '../components/FeaturedProjects.vue'
 import LatestPosts from '../components/LatestPosts.vue'
 import { useScrollReveal } from '../composables/useScrollReveal'
 
+const { t } = useI18n()
 const { targetRef: heroRef, isVisible: heroVisible } = useScrollReveal()
 
 useHead({
@@ -40,19 +42,19 @@ useHead({
             :class="[heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
           >
             <h2 class="text-sm font-semibold tracking-wider text-blue-600 uppercase mb-4">
-              Welcome to my portfolio
+              {{ t('home.hero.welcome') }}
             </h2>
             
             <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-              I'm 
+              {{ t('home.hero.greeting') }} 
               <span class="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-                Nguyễn Xuân Hùng
+                {{ t('home.hero.name') }}
               </span>
             </h1>
 
             <div class="h-12 mb-8 flex items-center justify-center lg:justify-start">
               <TerminalText 
-                full-text="Building scalable systems and modern web experiences..."
+                :full-text="t('home.hero.terminal')"
                 :speed="50"
                 :delay="1000"
                 class="text-xl md:text-2xl"
@@ -60,7 +62,7 @@ useHead({
             </div>
 
             <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto lg:mx-0">
-              Senior Software Engineer specializing in full-stack development, cloud architecture, and creating user-centric digital solutions.
+              {{ t('home.hero.description') }}
             </p>
 
             <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
@@ -68,13 +70,13 @@ useHead({
                 to="/projects"
                 class="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all hover:scale-105 shadow-lg shadow-blue-500/25"
               >
-                View Projects
+                {{ t('home.hero.viewProjects') }}
               </RouterLink>
               <RouterLink 
                 to="/contact"
                 class="px-8 py-3 border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-all"
               >
-                Contact Me
+                {{ t('home.hero.contactMe') }}
               </RouterLink>
             </div>
           </div>

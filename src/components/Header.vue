@@ -15,17 +15,24 @@
             active-class="text-indigo-600 bg-indigo-50"
             exact-active-class="text-indigo-600 bg-indigo-50"
           >
-            {{ link.label }}
+            {{ t(link.key) }}
           </RouterLink>
         </nav>
 
-        <Navbar />
+        <div class="flex items-center gap-2">
+          <Navbar />
+          <LanguageToggle />
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import Navbar from './Navbar.vue'
+import LanguageToggle from './LanguageToggle.vue'
 import { NAV_LINKS } from '../constants/nav'
+
+const { t } = useI18n()
 </script>

@@ -23,7 +23,7 @@
           active-class="text-indigo-600 bg-indigo-50"
           @click="isOpen = false"
         >
-          {{ link.label }}
+          {{ t(link.key) }}
         </RouterLink>
       </nav>
     </div>
@@ -32,8 +32,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { NAV_LINKS } from '../constants/nav'
 
+const { t } = useI18n()
 const isOpen = ref(false)
 
 function toggle() {
