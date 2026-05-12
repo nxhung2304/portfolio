@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
 import HeroCanvas from '../components/HeroCanvas.vue'
@@ -12,11 +13,11 @@ const { t } = useI18n()
 const { targetRef: heroRef, isVisible: heroVisible } = useScrollReveal()
 
 useHead({
-  title: 'Home | Nguyễn Xuân Hùng - Senior Software Engineer',
+  title: computed(() => t('home.meta.title')),
   meta: [
-    { name: 'description', content: 'Portfolio of Nguyễn Xuân Hùng, a Senior Software Engineer specializing in full-stack development, cloud architecture, and modern web experiences.' },
-    { property: 'og:title', content: 'Nguyễn Xuân Hùng | Senior Software Engineer' },
-    { property: 'og:description', content: 'Explore my projects, blog posts, and technical expertise in building scalable systems.' },
+    { name: 'description', content: computed(() => t('home.meta.description')) },
+    { property: 'og:title', content: computed(() => t('home.meta.title')) },
+    { property: 'og:description', content: computed(() => t('home.meta.description')) },
     { property: 'og:type', content: 'website' },
     { property: 'og:image', content: '/og-image.jpg' },
     { name: 'twitter:card', content: 'summary_large_image' },
@@ -41,11 +42,11 @@ useHead({
             class="flex-1 text-center lg:text-left transition-all duration-1000 transform"
             :class="[heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
           >
-            <h2 class="text-sm font-semibold tracking-wider text-blue-600 uppercase mb-4">
+            <h2 class="text-sm font-semibold tracking-wider text-blue-600 dark:text-blue-400 uppercase mb-4">
               {{ t('home.hero.welcome') }}
             </h2>
             
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-gray-900 dark:text-white">
               {{ t('home.hero.greeting') }} 
               <span class="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
                 {{ t('home.hero.name') }}
@@ -57,7 +58,7 @@ useHead({
                 :full-text="t('home.hero.terminal')"
                 :speed="50"
                 :delay="1000"
-                class="text-xl md:text-2xl"
+                class="text-xl md:text-2xl text-gray-800 dark:text-gray-200"
               />
             </div>
 

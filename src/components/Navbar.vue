@@ -2,7 +2,7 @@
   <div class="md:hidden">
     <button
       @click="toggle"
-      class="p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+      class="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
       aria-label="Toggle menu"
     >
       <svg v-if="!isOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -13,14 +13,14 @@
       </svg>
     </button>
 
-    <div v-if="isOpen" class="absolute top-16 left-0 right-0 bg-white shadow-lg border-t border-gray-100 z-50">
+    <div v-if="isOpen" class="absolute top-16 left-0 right-0 bg-white dark:bg-gray-900 shadow-lg border-t border-gray-100 dark:border-gray-800 z-50">
       <nav class="flex flex-col px-4 py-3 space-y-1">
         <RouterLink
           v-for="link in NAV_LINKS"
           :key="link.to"
           :to="link.to"
-          class="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
-          active-class="text-indigo-600 bg-indigo-50"
+          class="px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-indigo-600 dark:hover:text-indigo-400"
+          active-class="text-indigo-600 bg-indigo-50 dark:text-indigo-400 dark:bg-indigo-900/50"
           @click="isOpen = false"
         >
           {{ t(link.key) }}

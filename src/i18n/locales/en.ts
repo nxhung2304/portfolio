@@ -6,6 +6,18 @@ export default {
     blog: 'Blog',
     contact: 'Contact'
   },
+  common: {
+    light: 'Light',
+    dark: 'Dark',
+    switchToDark: 'Switch to dark mode',
+    switchToLight: 'Switch to light mode',
+    share: 'Share',
+    shareTwitter: 'Share on Twitter',
+    shareLinkedIn: 'Share on LinkedIn',
+    copyLink: 'Copy link',
+    copied: 'Copied!',
+    visit: 'Visit'
+  },
   home: {
     meta: {
       title: 'Home | Nguyễn Xuân Hùng - Senior Software Engineer',
@@ -33,6 +45,10 @@ export default {
       empty: 'No posts yet.',
       readMore: 'Read more',
       minsRead: 'mins read'
+    },
+    techStack: {
+      title: 'Tech Stack',
+      subtitle: 'The core technologies I use to bring ideas to life.'
     }
   },
   about: {
@@ -55,7 +71,15 @@ export default {
       present: 'present'
     },
     skills: {
-      heading: 'Professional Skills'
+      heading: 'Professional Skills',
+      categories: {
+        mobile: 'Mobile',
+        frontend: 'Frontend',
+        backend: 'Backend',
+        firebase: 'Firebase',
+        devops: 'Auth & DevOps',
+        ai: 'AI Tools'
+      }
     }
   },
   projects: {
@@ -78,6 +102,15 @@ export default {
       featured: 'featured',
       withTag: 'with tag',
       viewAll: 'View All'
+    },
+    detail: {
+      back: 'Back to projects',
+      notFound: 'Project not found',
+      notFoundDesc: 'The project you\'re looking for doesn\'t exist or has been moved.',
+      viewAll: 'View all projects',
+      github: 'GitHub',
+      demo: 'Live Demo',
+      exploreMore: 'Explore more projects →'
     }
   },
   blog: {
@@ -97,7 +130,14 @@ export default {
     noResultsDesc: 'We couldn\'t find any posts matching your criteria',
     clearFilters: 'Clear all filters',
     loadMore: 'Load More Posts',
-    loading: 'Loading...'
+    loading: 'Loading...',
+    detail: {
+      back: 'Back to blog',
+      notFound: 'Post not found',
+      notFoundDesc: 'The blog post you\'re looking for doesn\'t exist or has been moved.',
+      viewAll: 'View all posts',
+      readMore: 'Read more articles →'
+    }
   },
   contact: {
     meta: {
@@ -117,5 +157,8 @@ export default {
       viewCv: 'View CV ↓',
       linkedin: 'LinkedIn ↗'
     }
+  },
+  footer: {
+    rightsReserved: 'All rights reserved.'
   }
 }

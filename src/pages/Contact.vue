@@ -24,8 +24,8 @@
             :href="social.link"
             target="_blank"
             rel="noopener noreferrer"
-            :aria-label="`Ghé thăm ${social.name} - ${social.handle}`"
-            class="flex items-center gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300 group"
+            :aria-label="`${t('common.visit')} ${social.name} - ${social.handle}`"
+            class="flex items-center gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-blue-500/50 hover:bg-blue-500/5 dark:hover:bg-blue-400/10 transition-all duration-300 group"
           >
             <div
               class="w-12 h-12 rounded-xl flex items-center justify-center transition-colors flex-shrink-0"
@@ -49,10 +49,10 @@
               </svg>
             </div>
             <div class="flex-1">
-              <p class="font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{{ social.name }}</p>
-              <p class="text-sm text-gray-500">{{ social.desc }}</p>
+              <p class="font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{{ social.name }}</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">{{ social.desc }}</p>
             </div>
-            <span class="text-xs font-mono text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400">{{ social.handle }}</span>
+            <span class="text-xs font-mono text-gray-400 dark:text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-400">{{ social.handle }}</span>
           </a>
         </div>
     </div>
@@ -78,6 +78,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
 import { useScrollReveal } from '../composables/useScrollReveal'
@@ -85,11 +86,11 @@ import { useScrollReveal } from '../composables/useScrollReveal'
 const { t } = useI18n()
 
 useHead({
-  title: 'Liên hệ | Hung Nguyen',
+  title: computed(() => t('contact.meta.title')),
   meta: [
-    { name: 'description', content: 'Kết nối với Hung Nguyen - Full Stack & DevOps Engineer qua GitHub, LinkedIn, Twitter hoặc Email.' },
-    { property: 'og:title', content: 'Liên hệ | Hung Nguyen' },
-    { property: 'og:description', content: 'Kết nối với Hung Nguyen - Full Stack & DevOps Engineer.' },
+    { name: 'description', content: computed(() => t('contact.meta.description')) },
+    { property: 'og:title', content: computed(() => t('contact.meta.title')) },
+    { property: 'og:description', content: computed(() => t('contact.meta.description')) },
   ],
 })
 
@@ -97,7 +98,7 @@ const { targetRef: heroRef, isVisible: heroVisible } = useScrollReveal()
 const { targetRef: socialRef, isVisible: socialVisible } = useScrollReveal()
 const { targetRef: ctaRef, isVisible: ctaVisible } = useScrollReveal()
 
-const socials = [
+const socials = computed(() => [
   {
     name: 'GitHub',
     handle: 'nxhung2304',
@@ -106,19 +107,28 @@ const socials = [
     link: 'https://github.com/nxhung2304'
   },
   {
+    name: 'LinkedIn',
+    handle: 'Nguyễn Xuân Hùng',
+    desc: t('contact.socials.linkedin'),
+    color: '#0077B5',
+    link: 'https://linkedin.com/in/nxhung2304'
+  },
+  {
+    name: 'Twitter',
+    handle: '@nxhung2304',
+    desc: t('contact.socials.twitter'),
+    color: '#1DA1F2',
+    link: 'https://twitter.com/nxhung2304'
+  },
+  {
     name: 'Gmail',
     handle: 'mongtamquoc2015@gmail.com',
     desc: t('contact.socials.gmail'),
     color: '#EA4335',
     link: 'mailto:mongtamquoc2015@gmail.com'
   }
-]
+])
 </script>
-
-<style scoped>
-/* Any specific page transitions or additional custom styles can go here */
-</style>
-
 
 <style scoped>
 /* Any specific page transitions or additional custom styles can go here */

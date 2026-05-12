@@ -16,17 +16,17 @@
         >
           NH
         </div>
-        <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-green-500 border-2 border-white" />
+        <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-green-500 border-2 border-white dark:border-gray-900" />
       </div>
       <div>
-        <h1 id="bio-heading" class="text-3xl font-bold tracking-tight mb-3">{{ t('about.title') }}</h1>
-        <p class="text-gray-500 leading-relaxed max-w-xl mb-6">
+        <h1 id="bio-heading" class="text-3xl font-bold tracking-tight mb-3 text-gray-900 dark:text-white">{{ t('about.title') }}</h1>
+        <p class="text-gray-500 dark:text-gray-400 leading-relaxed max-w-xl mb-6">
           {{ t('about.bio') }}
         </p>
         <a 
           href="/nxhung-cv.pdf"
           download="nxhung-cv.pdf"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 transition-all duration-300 text-sm font-medium"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-sm font-medium"
           aria-label="Download CV (PDF)"
         >
           <span aria-hidden="true">📄</span>
@@ -47,12 +47,12 @@
         <div
           v-for="stat in stats"
           :key="stat.label"
-          class="p-5 rounded-xl border border-gray-200 bg-white hover:-translate-y-1 hover:border-blue-400 transition-all duration-300 text-center cursor-default"
+          class="p-5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 text-center cursor-default"
         >
           <p class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
             {{ stat.num }}
           </p>
-          <p class="text-xs text-gray-500 mt-1">{{ stat.label }}</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ stat.label }}</p>
         </div>
       </div>
     </section>
@@ -64,7 +64,7 @@
       class="mb-16"
       aria-labelledby="timeline-heading"
     >
-      <h2 id="timeline-heading" class="text-lg font-semibold mb-6">{{ t('about.timeline.heading') }}</h2>
+      <h2 id="timeline-heading" class="text-lg font-semibold mb-6 text-gray-900 dark:text-white">{{ t('about.timeline.heading') }}</h2>
 
       <div class="relative">
         <!-- Vertical connector line centered behind the 32px icon dot -->
@@ -78,7 +78,7 @@
           <!-- Icon dot -->
           <div
             :class="[
-              'w-8 h-8 rounded-full border-2 flex-shrink-0 flex items-center justify-center text-sm z-10 bg-white',
+              'w-8 h-8 rounded-full border-2 flex-shrink-0 flex items-center justify-center text-sm z-10 bg-white dark:bg-gray-900',
               item.type === 'work' ? 'border-blue-500' : 'border-cyan-400'
             ]"
             aria-hidden="true"
@@ -87,17 +87,17 @@
           </div>
 
           <!-- Card -->
-          <div class="flex-1 p-4 rounded-xl border border-gray-200 bg-white hover:border-blue-400 hover:translate-x-1 transition-all duration-300 cursor-default">
+          <div class="flex-1 p-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-400 dark:hover:border-blue-500 hover:translate-x-1 transition-all duration-300 cursor-default">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1">
-              <p class="text-sm font-semibold">{{ item.role }}</p>
-              <span class="text-xs text-gray-400 font-mono">{{ item.year }}</span>
+              <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">{{ item.role }}</p>
+              <span class="text-xs text-gray-400 dark:text-gray-500 font-mono">{{ item.year }}</span>
             </div>
-            <p class="text-xs text-blue-500 font-medium mb-2">{{ item.company }}</p>
+            <p class="text-xs text-blue-500 dark:text-blue-400 font-medium mb-2">{{ item.company }}</p>
             <div class="flex flex-wrap gap-2">
               <span
                 v-for="descItem in item.desc"
                 :key="descItem"
-                class="px-2.5 py-1 rounded-md bg-gray-50 border border-gray-100 text-xs font-medium text-gray-500 hover:border-blue-200 hover:bg-blue-50 transition-colors duration-200 cursor-default"
+                class="px-2.5 py-1 rounded-md bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-xs font-medium text-gray-500 dark:text-gray-400 hover:border-blue-200 dark:hover:border-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200 cursor-default"
               >
                 {{ descItem }}
               </span>
@@ -114,20 +114,20 @@
       class="mb-16"
       aria-labelledby="skills-heading"
     >
-      <h2 id="skills-heading" class="text-lg font-semibold mb-6">{{ t('about.skills.heading') }}</h2>
+      <h2 id="skills-heading" class="text-lg font-semibold mb-6 text-gray-900 dark:text-white">{{ t('about.skills.heading') }}</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div
           v-for="skillGroup in SKILLS"
           :key="skillGroup.category"
-          class="p-5 rounded-xl border border-gray-200 bg-white"
+          class="p-5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900"
         >
-          <h3 class="text-sm font-bold text-gray-700 mb-4">{{ skillGroup.category }}</h3>
+          <h3 class="text-sm font-bold text-gray-700 dark:text-gray-300 mb-4">{{ skillGroup.category }}</h3>
           <div class="flex flex-wrap gap-2">
             <span
               v-for="item in skillGroup.items"
               :key="item"
-              class="px-2.5 py-1 rounded-md bg-gray-50 border border-gray-100 text-xs font-medium text-gray-600 hover:border-blue-300 hover:bg-blue-50 transition-colors duration-200 cursor-default"
+              class="px-2.5 py-1 rounded-md bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-xs font-medium text-gray-600 dark:text-gray-400 hover:border-blue-300 dark:hover:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200 cursor-default"
             >
               {{ item }}
             </span>
@@ -216,14 +216,14 @@ const timelineItems = computed<TimelineItem[]>(() => [
   },
 ])
 
-const SKILLS: SkillGroup[] = [
-  { category: 'Mobile', items: ['Flutter', 'Dart', 'iOS / UIKit', 'BLE / Garmin'] },
-  { category: 'Frontend', items: ['Vue.js', 'TypeScript', 'Tailwind CSS', 'Nuxt.js'] },
-  { category: 'Backend', items: ['Ruby on Rails', 'REST API', 'Canvas LMS'] },
-  { category: 'Firebase', items: ['FCM', 'Analytics', 'App Distribution'] },
-  { category: 'Auth & DevOps', items: ['Google OAuth', 'Microsoft B2C', 'VPS Deploy', 'Linux'] },
-  { category: 'AI Tools', items: ['Claude Code', 'MCP', 'AI Skills'] },
-]
+const SKILLS = computed<SkillGroup[]>(() => [
+  { category: t('about.skills.categories.mobile'), items: ['Flutter', 'Dart', 'iOS / UIKit', 'BLE / Garmin'] },
+  { category: t('about.skills.categories.frontend'), items: ['Vue.js', 'TypeScript', 'Tailwind CSS', 'Nuxt.js'] },
+  { category: t('about.skills.categories.backend'), items: ['Ruby on Rails', 'REST API', 'Canvas LMS'] },
+  { category: t('about.skills.categories.firebase'), items: ['FCM', 'Analytics', 'App Distribution'] },
+  { category: t('about.skills.categories.devops'), items: ['Google OAuth', 'Microsoft B2C', 'VPS Deploy', 'Linux'] },
+  { category: t('about.skills.categories.ai'), items: ['Claude Code', 'MCP', 'AI Skills'] },
+])
 
 const { targetRef: bioRef, isVisible: bioVisible } = useScrollReveal()
 const { targetRef: statsRef, isVisible: statsVisible } = useScrollReveal()

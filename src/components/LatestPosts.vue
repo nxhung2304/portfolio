@@ -5,7 +5,7 @@ import { supabase } from '../lib/supabase'
 import type { Post } from '../lib/database.types'
 import { useScrollReveal } from '../composables/useScrollReveal'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const posts = ref<Post[]>([])
 const loading = ref(true)
 
@@ -32,17 +32,17 @@ const fetchLatestPosts = async () => {
 const formatDate = (dateString: string | null) => {
   if (!dateString) return ''
   const d = new Date(dateString)
-  return d.toLocaleDateString('en-GB', {
+  return d.toLocaleDateString(locale.value, {
     day: '2-digit',
     month: 'short'
   })
 }
 
-const calculateReadingTime = (content: string | null) => {
-  if (!content) return `1 ${t('home.latest.minsRead')}`
+const calculateReadingTimeNum = (content: string | null) => {
+  if (!content) return 1
   const words = content.split(/\s+/).length
   const minutes = Math.ceil(words / 200)
-  return `${minutes} ${t('home.latest.minsRead')}`
+  return minutes
 }
 
 onMounted(() => {
@@ -131,6 +131,13 @@ onMounted(() => {
     </div>
   </section>
 </template>
+
+<style scoped>
+.border-\[0\.5px\] {
+  border-width: 0.5px;
+}
+</style>
+late>
 
 <style scoped>
 .border-\[0\.5px\] {

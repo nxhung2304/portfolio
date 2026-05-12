@@ -6,6 +6,18 @@ export default {
     blog: 'Blog',
     contact: 'Liên hệ'
   },
+  common: {
+    light: 'Sáng',
+    dark: 'Tối',
+    switchToDark: 'Chuyển sang chế độ tối',
+    switchToLight: 'Chuyển sang chế độ sáng',
+    share: 'Chia sẻ',
+    shareTwitter: 'Chia sẻ trên Twitter',
+    shareLinkedIn: 'Chia sẻ trên LinkedIn',
+    copyLink: 'Sao chép liên kết',
+    copied: 'Đã sao chép!',
+    visit: 'Ghé thăm'
+  },
   home: {
     meta: {
       title: 'Trang chủ | Nguyễn Xuân Hùng - Kỹ sư phần mềm cao cấp',
@@ -33,6 +45,10 @@ export default {
       empty: 'Chưa có bài viết nào.',
       readMore: 'Đọc tiếp',
       minsRead: 'phút đọc'
+    },
+    techStack: {
+      title: 'Công nghệ sử dụng',
+      subtitle: 'Những công nghệ cốt lõi mình sử dụng để hiện thực hóa các ý tưởng.'
     }
   },
   about: {
@@ -55,7 +71,15 @@ export default {
       present: 'nay'
     },
     skills: {
-      heading: 'Kỹ năng chuyên môn'
+      heading: 'Kỹ năng chuyên môn',
+      categories: {
+        mobile: 'Di động',
+        frontend: 'Frontend',
+        backend: 'Backend',
+        firebase: 'Firebase',
+        devops: 'Auth & DevOps',
+        ai: 'Công cụ AI'
+      }
     }
   },
   projects: {
@@ -78,6 +102,15 @@ export default {
       featured: 'tiêu biểu',
       withTag: 'với tag',
       viewAll: 'Xem tất cả'
+    },
+    detail: {
+      back: 'Quay lại danh sách',
+      notFound: 'Không tìm thấy dự án',
+      notFoundDesc: 'Dự án bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.',
+      viewAll: 'Xem tất cả dự án',
+      github: 'Mã nguồn',
+      demo: 'Xem thực tế',
+      exploreMore: 'Khám phá thêm dự án →'
     }
   },
   blog: {
@@ -97,7 +130,14 @@ export default {
     noResultsDesc: 'Chúng tôi không tìm thấy bài viết nào khớp với tiêu chí của bạn',
     clearFilters: 'Xóa tất cả bộ lọc',
     loadMore: 'Tải thêm bài viết',
-    loading: 'Đang tải...'
+    loading: 'Đang tải...',
+    detail: {
+      back: 'Quay lại blog',
+      notFound: 'Không tìm thấy bài viết',
+      notFoundDesc: 'Bài viết bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.',
+      viewAll: 'Xem tất cả bài viết',
+      readMore: 'Đọc thêm các bài viết khác →'
+    }
   },
   contact: {
     meta: {
@@ -117,5 +157,8 @@ export default {
       viewCv: 'Xem CV ↓',
       linkedin: 'LinkedIn ↗'
     }
+  },
+  footer: {
+    rightsReserved: 'Đã đăng ký bản quyền.'
   }
 }
