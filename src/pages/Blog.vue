@@ -4,8 +4,8 @@
     <header class="mb-12">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
         <div>
-          <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ t('blog.title') }}</h1>
-          <p class="text-lg text-gray-600 max-w-2xl">
+          <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ t('blog.title') }}</h1>
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
             {{ t('blog.subtitle') }}
           </p>
         </div>
@@ -16,7 +16,7 @@
             v-model="searchQuery"
             type="text"
             :placeholder="t('blog.searchPlaceholder')"
-            class="w-full px-4 py-3 pl-10 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            class="w-full px-4 py-3 pl-10 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
           />
           <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -32,20 +32,20 @@
       <button
         type="button"
         @click="selectedTags = []"
-        :class="selectedTags.length === 0 ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
+        :class="selectedTags.length === 0 ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'"
         class="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
       >
         {{ t('blog.filter.all') }}
       </button>
 
-      <div class="h-4 w-px bg-gray-200 mx-1" />
+      <div class="h-4 w-px bg-gray-200 dark:bg-gray-700 mx-1" />
 
       <button
         v-for="tag in allTags"
         :key="tag"
         type="button"
         @click="toggleTag(tag)"
-        :class="selectedTags.includes(tag) ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
+        :class="selectedTags.includes(tag) ? 'bg-blue-500 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'"
         class="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
       >
         {{ tag }}
@@ -54,13 +54,13 @@
 
     <!-- Active Filters -->
     <div v-if="selectedTags.length > 0" class="flex items-center gap-2 mb-6">
-      <span class="text-xs font-bold uppercase tracking-wider text-gray-400">{{ t('blog.filter.activeTags') }}</span>
+      <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">{{ t('blog.filter.activeTags') }}</span>
       <div class="flex flex-wrap gap-2">
         <button
           v-for="tag in selectedTags"
           :key="tag"
           @click="toggleTag(tag)"
-          class="flex items-center gap-1 px-2 py-1 rounded-md bg-blue-50 border border-blue-100 text-[10px] font-bold uppercase tracking-wider text-blue-500 hover:bg-blue-100 transition-colors"
+          class="flex items-center gap-1 px-2 py-1 rounded-md bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 text-[10px] font-bold uppercase tracking-wider text-blue-500 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
         >
           {{ tag }}
           <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
@@ -80,18 +80,18 @@
     </div>
 
     <!-- Empty State / No Results -->
-    <div v-else-if="!isLoading" class="text-center py-20 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
+    <div v-else-if="!isLoading" class="text-center py-20 bg-gray-50 dark:bg-gray-800/50 rounded-3xl border-2 border-dashed border-gray-200 dark:border-gray-800">
       <div class="text-5xl mb-4">{{ debouncedQuery || selectedTags.length > 0 ? '🔍' : '📭' }}</div>
-      <h3 class="text-xl font-bold text-gray-900 mb-2">
+      <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
         {{ debouncedQuery || selectedTags.length > 0 ? t('blog.noResults') : t('blog.empty') }}
       </h3>
-      <p class="text-gray-500">
+      <p class="text-gray-500 dark:text-gray-400">
         {{ debouncedQuery || selectedTags.length > 0 ? t('blog.noResultsDesc') : (debouncedQuery || selectedTags.length > 0 ? t('blog.noResultsDesc') : t('blog.empty')) }}
       </p>
       <button 
         v-if="debouncedQuery || selectedTags.length > 0"
         @click="clearFilters"
-        class="mt-6 text-blue-500 font-medium hover:underline"
+        class="mt-6 text-blue-500 dark:text-blue-400 font-medium hover:underline"
       >
         {{ t('blog.clearFilters') }}
       </button>
@@ -100,13 +100,13 @@
     <!-- Loading State -->
     <div v-if="isLoading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
       <div v-for="i in pageSize" :key="i" class="animate-pulse">
-        <div class="aspect-video bg-gray-200 rounded-xl mb-4"></div>
-        <div class="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
-        <div class="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
-        <div class="h-4 bg-gray-200 rounded w-full mb-4"></div>
+        <div class="aspect-video bg-gray-200 dark:bg-gray-800 rounded-xl mb-4"></div>
+        <div class="h-4 bg-gray-200 dark:bg-gray-800 rounded w-1/4 mb-4"></div>
+        <div class="h-6 bg-gray-200 dark:bg-gray-800 rounded w-3/4 mb-2"></div>
+        <div class="h-4 bg-gray-200 dark:bg-gray-800 rounded w-full mb-4"></div>
         <div class="flex gap-2">
-          <div class="h-6 bg-gray-200 rounded w-16"></div>
-          <div class="h-6 bg-gray-200 rounded w-16"></div>
+          <div class="h-6 bg-gray-200 dark:bg-gray-800 rounded w-16"></div>
+          <div class="h-6 bg-gray-200 dark:bg-gray-800 rounded w-16"></div>
         </div>
       </div>
     </div>
@@ -116,7 +116,7 @@
       <button
         @click="loadMore"
         :disabled="isLoading"
-        class="px-8 py-3 bg-white border border-gray-200 rounded-full font-bold text-gray-900 hover:border-blue-500 hover:text-blue-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="px-8 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-full font-bold text-gray-900 dark:text-white hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-500 dark:hover:text-blue-400 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {{ isLoading ? t('blog.loading') : t('blog.loadMore') }}
       </button>

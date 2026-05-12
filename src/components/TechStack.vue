@@ -59,7 +59,7 @@ const technologies = [
         class="text-center mb-12 transition-all duration-1000 transform"
         :class="[isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10']"
       >
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Tech Stack</h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Tech Stack</h2>
         <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           The core technologies I use to bring ideas to life.
         </p>

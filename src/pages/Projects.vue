@@ -2,37 +2,37 @@
   <main class="max-w-6xl mx-auto px-4 sm:px-8 py-12">
     <!-- Header -->
     <section class="mb-12">
-      <h1 class="text-3xl font-bold tracking-tight mb-4">{{ t('projects.title') }}</h1>
-      <p class="text-gray-500 max-w-2xl">
+      <h1 class="text-3xl font-bold tracking-tight mb-4 text-gray-900 dark:text-white">{{ t('projects.title') }}</h1>
+      <p class="text-gray-500 dark:text-gray-400 max-w-2xl">
         {{ t('projects.subtitle') }}
       </p>
     </section>
 
     <!-- Loading State -->
     <div v-if="loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div v-for="i in 6" :key="i" class="p-4 rounded-2xl border border-gray-100 bg-white animate-pulse">
-        <div class="aspect-video bg-gray-100 rounded-xl mb-4" />
-        <div class="h-6 bg-gray-100 rounded w-3/4 mb-4" />
-        <div class="h-4 bg-gray-100 rounded w-full mb-2" />
-        <div class="h-4 bg-gray-100 rounded w-5/6 mb-4" />
+      <div v-for="i in 6" :key="i" class="p-4 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 animate-pulse">
+        <div class="aspect-video bg-gray-100 dark:bg-gray-800 rounded-xl mb-4" />
+        <div class="h-6 bg-gray-100 dark:bg-gray-800 rounded w-3/4 mb-4" />
+        <div class="h-4 bg-gray-100 dark:bg-gray-800 rounded w-full mb-2" />
+        <div class="h-4 bg-gray-100 dark:bg-gray-800 rounded w-5/6 mb-4" />
         <div class="flex gap-2">
-          <div class="h-4 bg-gray-100 rounded w-12" />
-          <div class="h-4 bg-gray-100 rounded w-12" />
-          <div class="h-4 bg-gray-100 rounded w-12" />
+          <div class="h-4 bg-gray-100 dark:bg-gray-800 rounded w-12" />
+          <div class="h-4 bg-gray-100 dark:bg-gray-800 rounded w-12" />
+          <div class="h-4 bg-gray-100 dark:bg-gray-800 rounded w-12" />
         </div>
       </div>
     </div>
 
     <!-- Error State -->
     <div v-else-if="error" class="py-20 text-center">
-      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-500 mb-4">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-50 dark:bg-red-900/20 text-red-500 mb-4">
         <span aria-hidden="true">⚠️</span>
       </div>
-      <p class="text-gray-600 mb-6">{{ t('projects.error') }}</p>
+      <p class="text-gray-600 dark:text-gray-400 mb-6">{{ t('projects.error') }}</p>
       <button 
         type="button"
         @click="fetchProjects"
-        class="px-5 py-2 rounded-lg bg-gray-900 text-white hover:bg-black transition-all font-medium text-sm"
+        class="px-5 py-2 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-black dark:hover:bg-gray-100 transition-all font-medium text-sm"
       >
         {{ t('projects.retry') }}
       </button>
@@ -43,32 +43,32 @@
       <button
         type="button"
         @click="activeTag = null; onlyFeatured = false"
-        :class="activeTag === null && !onlyFeatured ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
+        :class="activeTag === null && !onlyFeatured ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'"
         class="px-3 py-1 rounded-full text-sm font-medium transition-colors"
       >
         {{ t('projects.filter.all') }}
       </button>
 
-      <div class="h-4 w-px bg-gray-200 mx-1" />
+      <div class="h-4 w-px bg-gray-200 dark:bg-gray-700 mx-1" />
 
       <button
         type="button"
         @click="onlyFeatured = !onlyFeatured; activeTag = null"
-        :class="onlyFeatured ? 'bg-blue-500 text-white' : 'bg-blue-50 text-blue-600 hover:bg-blue-100'"
+        :class="onlyFeatured ? 'bg-blue-500 text-white' : 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50'"
         class="px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5"
       >
         <span v-if="onlyFeatured">★</span>
         {{ t('projects.filter.featured') }}
       </button>
 
-      <div class="h-4 w-px bg-gray-200 mx-1" />
+      <div class="h-4 w-px bg-gray-200 dark:bg-gray-700 mx-1" />
 
       <button
         v-for="tag in uniqueTags"
         :key="tag"
         type="button"
         @click="activeTag = tag; onlyFeatured = false"
-        :class="activeTag === tag ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
+        :class="activeTag === tag ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'"
         class="px-3 py-1 rounded-full text-sm font-medium transition-colors"
       >
         {{ tag }}
@@ -77,26 +77,26 @@
 
     <!-- Empty State: no projects in DB -->
     <div v-if="!loading && !error && projects.length === 0" class="py-20 text-center">
-      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 text-gray-300 mb-4">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 dark:bg-gray-800/50 text-gray-300 dark:text-gray-600 mb-4">
         <span aria-hidden="true">🔍</span>
       </div>
-      <p class="text-gray-500">{{ t('projects.empty') }}</p>
+      <p class="text-gray-500 dark:text-gray-400">{{ t('projects.empty') }}</p>
     </div>
 
     <!-- Empty State: no match for active filter -->
     <div v-if="!loading && !error && projects.length > 0 && filteredProjects.length === 0" class="py-20 text-center">
-      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 text-gray-300 mb-4">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 dark:bg-gray-800/50 text-gray-300 dark:text-gray-600 mb-4">
         <span aria-hidden="true">🔍</span>
       </div>
-      <p class="text-gray-500">
+      <p class="text-gray-500 dark:text-gray-400">
         {{ t('projects.noResults.text') }} 
         <span v-if="onlyFeatured">{{ t('projects.noResults.featured') }}</span>
-        <span v-if="activeTag">{{ t('projects.noResults.withTag') }} <span class="font-medium text-gray-700">{{ activeTag }}</span></span>.
+        <span v-if="activeTag">{{ t('projects.noResults.withTag') }} <span class="font-medium text-gray-700 dark:text-gray-300">{{ activeTag }}</span></span>.
       </p>
       <button
         type="button"
         @click="activeTag = null; onlyFeatured = false"
-        class="mt-4 px-4 py-2 rounded-lg bg-gray-900 text-white hover:bg-black transition-all font-medium text-sm"
+        class="mt-4 px-4 py-2 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-black dark:hover:bg-gray-100 transition-all font-medium text-sm"
       >
         {{ t('projects.noResults.viewAll') }}
       </button>

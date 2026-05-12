@@ -249,9 +249,6 @@ Nhóm từng Phase thành PR-sized tasks. Mỗi task đủ nhỏ để 1 PR, đ�
           - B2C
 - Professional Skills
     - Ref to public/cv-en.html / public/cv-vi.html
-
-
-### Task 7.3: Feedback design
 - Footer
     - Remove home/about/project/Blog/Contact
     - COnsider add github, phone, mail

@@ -25,7 +25,7 @@
             target="_blank"
             rel="noopener noreferrer"
             :aria-label="`Ghé thăm ${social.name} - ${social.handle}`"
-            class="flex items-center gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300 group"
+            class="flex items-center gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-blue-500/50 hover:bg-blue-500/5 dark:hover:bg-blue-400/10 transition-all duration-300 group"
           >
             <div
               class="w-12 h-12 rounded-xl flex items-center justify-center transition-colors flex-shrink-0"
@@ -49,10 +49,10 @@
               </svg>
             </div>
             <div class="flex-1">
-              <p class="font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{{ social.name }}</p>
-              <p class="text-sm text-gray-500">{{ social.desc }}</p>
+              <p class="font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{{ social.name }}</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">{{ social.desc }}</p>
             </div>
-            <span class="text-xs font-mono text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400">{{ social.handle }}</span>
+            <span class="text-xs font-mono text-gray-400 dark:text-gray-500 group-hover:text-blue-600 dark:group-hover:text-blue-400">{{ social.handle }}</span>
           </a>
         </div>
     </div>
@@ -114,11 +114,6 @@ const socials = [
   }
 ]
 </script>
-
-<style scoped>
-/* Any specific page transitions or additional custom styles can go here */
-</style>
-
 
 <style scoped>
 /* Any specific page transitions or additional custom styles can go here */

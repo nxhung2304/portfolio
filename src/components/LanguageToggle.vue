@@ -12,7 +12,7 @@ function toggleLanguage() {
 <template>
   <button
     @click="toggleLanguage"
-    class="flex items-center gap-2 px-2.5 py-1.5 text-xs font-bold transition-all rounded-lg border border-gray-200 text-gray-600 hover:border-indigo-600 hover:text-indigo-600 hover:bg-indigo-50 group shadow-sm"
+    class="flex items-center gap-2 px-2.5 py-1.5 text-xs font-bold transition-all rounded-lg border border-gray-200 text-gray-600 hover:border-indigo-600 hover:text-indigo-600 hover:bg-indigo-50 dark:border-gray-700 dark:text-gray-400 dark:hover:border-indigo-400 dark:hover:text-indigo-400 dark:hover:bg-gray-800 group shadow-sm"
   >
     <!-- US Flag SVG (for English) -->
     <svg v-if="locale === 'en'" class="w-4 h-3 rounded-sm shadow-sm" viewBox="0 0 741 390">
