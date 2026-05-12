@@ -168,47 +168,59 @@ const stats = computed<StatItem[]>(() => [
 
 const timelineItems = computed<TimelineItem[]>(() => [
   {
-    year: `2024 — ${t('about.timeline.present')}`,
-    role: 'Senior DevOps Engineer',
-    company: 'Tech Corp',
-    desc: locale.value === 'vi' 
-      ? 'Thiết kế CI/CD pipeline, quản lý Kubernetes clusters, tối ưu infrastructure cost 40%.' 
-      : 'Designed CI/CD pipelines, managed Kubernetes clusters, optimized infrastructure cost by 40%.',
+    year: '2026',
+    role: 'Software Developer',
+    company: 'Rights-S',
+    desc: locale.value === 'vi'
+      ? 'Rails API CRUD, Flutter BLE, Microsoft B2C.'
+      : 'Rails API CRUD, Flutter BLE, Microsoft B2C.',
     type: 'work',
   },
   {
-    year: '2022 — 2024',
-    role: 'Full Stack Developer',
-    company: 'Startup XYZ',
+    year: '2025',
+    role: 'Software Developer',
+    company: 'Rights-S',
     desc: locale.value === 'vi'
-      ? 'Phát triển SaaS platform với Vue + Node.js, phục vụ 50K+ users.'
-      : 'Developed SaaS platform with Vue + Node.js, serving 50K+ users.',
+      ? 'Flutter BLE, Rails API; Microsoft & Google OAuth/Classroom API; iOS native (AppFlyer cloud setup + Onelink).'
+      : 'Flutter BLE, Rails API; Microsoft & Google OAuth/Classroom API; iOS native (AppFlyer cloud setup + Onelink).',
     type: 'work',
   },
   {
-    year: '2020 — 2022',
-    role: 'Backend Developer',
-    company: 'Agency ABC',
+    year: '2024',
+    role: 'Software Developer',
+    company: 'Rights-S',
     desc: locale.value === 'vi'
-      ? 'Xây dựng REST APIs, microservices, database optimization.'
-      : 'Built REST APIs, microservices, database optimization.',
+      ? 'Ruby on Rails, Flutter, iOS native (thích ứng API mới).'
+      : 'Ruby on Rails, Flutter, iOS native (adapt new API).',
     type: 'work',
   },
   {
-    year: '2016 — 2020',
-    role: locale.value === 'vi' ? 'Khoa học Máy tính' : 'Computer Science',
-    company: locale.value === 'vi' ? 'Đại học Bách Khoa' : 'Ho Chi Minh City University of Technology',
+    year: '2021 — 2023',
+    role: 'Software Developer',
+    company: 'Rights-S',
     desc: locale.value === 'vi'
-      ? 'Tốt nghiệp loại giỏi, chuyên ngành Công nghệ phần mềm.'
-      : 'Graduated with Distinction, majoring in Software Engineering.',
+      ? 'Cordova + Vue.js (mobile apps: golf, camp, children); Vue.js + Rails web (Microsoft 365 mailboxes).'
+      : 'Cordova + Vue.js (mobile apps: golf, camp, children); Vue.js + Rails web (Microsoft 365 mailboxes).',
+    type: 'work',
+  },
+  {
+    year: '2018 — 2021',
+    role: locale.value === 'vi' ? 'Công nghệ thông tin' : 'Information Technology',
+    company: locale.value === 'vi' ? 'Cao đẳng Công nghiệp Huế' : 'Hue Industrial College',
+    desc: locale.value === 'vi'
+      ? 'Tốt nghiệp chuyên ngành Công nghệ thông tin.'
+      : 'Graduated majoring in Information Technology.',
     type: 'edu',
   },
 ])
 
 const SKILLS: SkillGroup[] = [
-  { category: 'Frontend', items: ['Vue 3', 'TypeScript', 'Tailwind CSS', 'Vite', 'Pinia', 'Nuxt.js'] },
-  { category: 'Backend', items: ['Node.js', 'PostgreSQL', 'Supabase', 'REST API', 'Redis', 'GraphQL'] },
-  { category: 'Tools/DevOps', items: ['Docker', 'Kubernetes', 'GitHub Actions', 'Linux', 'Terraform', 'AWS'] },
+  { category: 'Mobile', items: ['Flutter', 'Dart', 'iOS / UIKit', 'BLE / Garmin'] },
+  { category: 'Frontend', items: ['Vue.js', 'TypeScript', 'Tailwind CSS', 'Nuxt.js'] },
+  { category: 'Backend', items: ['Ruby on Rails', 'REST API', 'Canvas LMS'] },
+  { category: 'Firebase', items: ['FCM', 'Analytics', 'App Distribution'] },
+  { category: 'Auth & DevOps', items: ['Google OAuth', 'Microsoft B2C', 'VPS Deploy', 'Linux'] },
+  { category: 'AI Tools', items: ['Claude Code', 'MCP', 'AI Skills'] },
 ]
 
 const { targetRef: bioRef, isVisible: bioVisible } = useScrollReveal()
