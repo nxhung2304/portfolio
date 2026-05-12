@@ -93,7 +93,15 @@
               <span class="text-xs text-gray-400 font-mono">{{ item.year }}</span>
             </div>
             <p class="text-xs text-blue-500 font-medium mb-2">{{ item.company }}</p>
-            <p class="text-xs text-gray-500 leading-relaxed">{{ item.desc }}</p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                v-for="descItem in item.desc"
+                :key="descItem"
+                class="px-2.5 py-1 rounded-md bg-gray-50 border border-gray-100 text-xs font-medium text-gray-500 hover:border-blue-200 hover:bg-blue-50 transition-colors duration-200 cursor-default"
+              >
+                {{ descItem }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -156,7 +164,7 @@ useHead({
 })
 
 type StatItem = { num: string; label: string }
-type TimelineItem = { year: string; role: string; company: string; desc: string; type: 'work' | 'edu' }
+type TimelineItem = { year: string; role: string; company: string; desc: string[]; type: 'work' | 'edu' }
 type SkillGroup = { category: string; items: string[] }
 
 const stats = computed<StatItem[]>(() => [
@@ -171,45 +179,39 @@ const timelineItems = computed<TimelineItem[]>(() => [
     year: '2026',
     role: 'Software Developer',
     company: 'Rights-S',
-    desc: locale.value === 'vi'
-      ? 'Rails API CRUD, Flutter BLE, Microsoft B2C.'
-      : 'Rails API CRUD, Flutter BLE, Microsoft B2C.',
+    desc: ['Rails API CRUD', 'Flutter BLE', 'Microsoft B2C'],
     type: 'work',
   },
   {
     year: '2025',
     role: 'Software Developer',
     company: 'Rights-S',
-    desc: locale.value === 'vi'
-      ? 'Flutter BLE, Rails API; Microsoft & Google OAuth/Classroom API; iOS native (AppFlyer cloud setup + Onelink).'
-      : 'Flutter BLE, Rails API; Microsoft & Google OAuth/Classroom API; iOS native (AppFlyer cloud setup + Onelink).',
+    desc: ['Flutter BLE', 'Rails API', 'Microsoft & Google OAuth', 'Classroom API', 'iOS native (AppFlyer + Onelink)'],
     type: 'work',
   },
   {
     year: '2024',
     role: 'Software Developer',
     company: 'Rights-S',
-    desc: locale.value === 'vi'
-      ? 'Ruby on Rails, Flutter, iOS native (thích ứng API mới).'
-      : 'Ruby on Rails, Flutter, iOS native (adapt new API).',
+    desc: ['Ruby on Rails', 'Flutter', 'iOS native (API Adaptability)'],
     type: 'work',
   },
   {
     year: '2021 — 2023',
     role: 'Software Developer',
     company: 'Rights-S',
-    desc: locale.value === 'vi'
-      ? 'Cordova + Vue.js (mobile apps: golf, camp, children); Vue.js + Rails web (Microsoft 365 mailboxes).'
-      : 'Cordova + Vue.js (mobile apps: golf, camp, children); Vue.js + Rails web (Microsoft 365 mailboxes).',
+    desc: ['Cordova + Vue.js (Mobile Apps)', 'Vue.js + Rails Web (Microsoft 365)'],
     type: 'work',
   },
   {
     year: '2018 — 2021',
     role: locale.value === 'vi' ? 'Công nghệ thông tin' : 'Information Technology',
     company: locale.value === 'vi' ? 'Cao đẳng Công nghiệp Huế' : 'Hue Industrial College',
-    desc: locale.value === 'vi'
-      ? 'Tốt nghiệp chuyên ngành Công nghệ thông tin.'
-      : 'Graduated majoring in Information Technology.',
+    desc: [
+      locale.value === 'vi'
+        ? 'Tốt nghiệp chuyên ngành Công nghệ thông tin.'
+        : 'Graduated majoring in Information Technology.'
+    ],
     type: 'edu',
   },
 ])

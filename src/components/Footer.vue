@@ -6,16 +6,28 @@
           &copy; {{ currentYear }} Hung Nguyen. All rights reserved.
         </p>
 
-        <nav class="flex items-center gap-6">
-          <RouterLink
-            v-for="link in NAV_LINKS"
-            :key="link.to"
-            :to="link.to"
-            class="text-sm text-gray-500 hover:text-indigo-600 transition-colors"
+        <div class="flex items-center gap-6">
+          <a
+            href="https://github.com/nxhung2304"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-gray-500 hover:text-blue-600 transition-colors"
           >
-            {{ link.label }}
-          </RouterLink>
-        </nav>
+            GitHub
+          </a>
+          <a
+            href="mailto:mongtamquoc2015@gmail.com"
+            class="text-sm text-gray-500 hover:text-blue-600 transition-colors"
+          >
+            Email
+          </a>
+          <a
+            href="tel:+84344445353"
+            class="text-sm text-gray-500 hover:text-blue-600 transition-colors"
+          >
+            +84 344 445 353
+          </a>
+        </div>
       </div>
     </div>
   </footer>
