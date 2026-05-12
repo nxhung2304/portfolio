@@ -69,11 +69,8 @@
         {{ t('contact.cta.description') }}
       </p>
       <div class="flex flex-wrap justify-center gap-4 relative z-10">
-        <a href="/nxhung-cv.pdf" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-white/20 backdrop-blur-md border border-white/30 rounded-xl font-bold hover:bg-white/30 transition-all">
+        <a href="/nxhung-cv.pdf" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-white text-blue-600 rounded-xl font-bold hover:shadow-xl hover:-translate-y-1 transition-all">
           {{ t('contact.cta.viewCv') }}
-        </a>
-        <a href="https://linkedin.com/in/hung-nguyen-xuan" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-white text-blue-600 rounded-xl font-bold hover:shadow-xl hover:-translate-y-1 transition-all">
-          {{ t('contact.cta.linkedin') }}
         </a>
       </div>
     </div>
@@ -107,20 +104,6 @@ const socials = [
     desc: t('contact.socials.github'),
     color: '#333333',
     link: 'https://github.com/nxhung2304'
-  },
-  {
-    name: 'LinkedIn',
-    handle: 'hung-nguyen-xuan',
-    desc: t('contact.socials.linkedin'),
-    color: '#0077B5',
-    link: 'https://linkedin.com/in/hung-nguyen-xuan'
-  },
-  {
-    name: 'Twitter',
-    handle: '@nxhung2304',
-    desc: t('contact.socials.twitter'),
-    color: '#000000',
-    link: 'https://x.com/nxhung2304'
   },
   {
     name: 'Gmail',
