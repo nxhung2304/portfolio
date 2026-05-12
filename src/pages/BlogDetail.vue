@@ -6,7 +6,7 @@
       class="inline-flex items-center text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 mb-8 transition-colors group"
     >
       <span class="mr-2 transform group-hover:-translate-x-1 transition-transform">←</span>
-      Back to blog
+      {{ t('blog.detail.back') }}
     </router-link>
 
     <!-- Loading State -->
@@ -27,13 +27,13 @@
       <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-50 dark:bg-red-900/20 text-red-500 mb-4">
         <span aria-hidden="true">⚠️</span>
       </div>
-      <h2 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Post not found</h2>
-      <p class="text-gray-600 dark:text-gray-400 mb-8">The blog post you're looking for doesn't exist or has been moved.</p>
+      <h2 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">{{ t('blog.detail.notFound') }}</h2>
+      <p class="text-gray-600 dark:text-gray-400 mb-8">{{ t('blog.detail.notFoundDesc') }}</p>
       <router-link 
         to="/blog"
         class="px-6 py-2 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-black dark:hover:bg-gray-100 transition-all font-medium inline-block"
       >
-        View all posts
+        {{ t('blog.detail.viewAll') }}
       </router-link>
     </div>
 
@@ -54,10 +54,10 @@
         
         <div class="flex items-center gap-6 text-sm text-gray-400 dark:text-gray-500">
           <span v-if="post.published_at">
-            {{ new Date(post.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) }}
+            {{ new Date(post.published_at).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' }) }}
           </span>
           <span v-else-if="post.created_at">
-            {{ new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) }}
+            {{ new Date(post.created_at).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' }) }}
           </span>
         </div>
       </header>
@@ -83,7 +83,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <SocialShare v-if="post" :title="post.title" :url="currentUrl" />
           <router-link to="/blog" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
-            Read more articles →
+            {{ t('blog.detail.readMore') }}
           </router-link>
         </div>
       </footer>
@@ -95,6 +95,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
+import { useI18n } from 'vue-i18n'
 import MarkdownIt from 'markdown-it'
 import type Token from 'markdown-it/lib/token'
 import { supabase } from '../lib/supabase'
@@ -102,6 +103,7 @@ import type { Post } from '../lib/database.types'
 import SocialShare from '../components/SocialShare.vue'
 
 const route = useRoute()
+const { t, locale } = useI18n()
 const md = new MarkdownIt({
   html: true,
   linkify: true,

@@ -216,14 +216,14 @@ const timelineItems = computed<TimelineItem[]>(() => [
   },
 ])
 
-const SKILLS: SkillGroup[] = [
-  { category: 'Mobile', items: ['Flutter', 'Dart', 'iOS / UIKit', 'BLE / Garmin'] },
-  { category: 'Frontend', items: ['Vue.js', 'TypeScript', 'Tailwind CSS', 'Nuxt.js'] },
-  { category: 'Backend', items: ['Ruby on Rails', 'REST API', 'Canvas LMS'] },
-  { category: 'Firebase', items: ['FCM', 'Analytics', 'App Distribution'] },
-  { category: 'Auth & DevOps', items: ['Google OAuth', 'Microsoft B2C', 'VPS Deploy', 'Linux'] },
-  { category: 'AI Tools', items: ['Claude Code', 'MCP', 'AI Skills'] },
-]
+const SKILLS = computed<SkillGroup[]>(() => [
+  { category: t('about.skills.categories.mobile'), items: ['Flutter', 'Dart', 'iOS / UIKit', 'BLE / Garmin'] },
+  { category: t('about.skills.categories.frontend'), items: ['Vue.js', 'TypeScript', 'Tailwind CSS', 'Nuxt.js'] },
+  { category: t('about.skills.categories.backend'), items: ['Ruby on Rails', 'REST API', 'Canvas LMS'] },
+  { category: t('about.skills.categories.firebase'), items: ['FCM', 'Analytics', 'App Distribution'] },
+  { category: t('about.skills.categories.devops'), items: ['Google OAuth', 'Microsoft B2C', 'VPS Deploy', 'Linux'] },
+  { category: t('about.skills.categories.ai'), items: ['Claude Code', 'MCP', 'AI Skills'] },
+])
 
 const { targetRef: bioRef, isVisible: bioVisible } = useScrollReveal()
 const { targetRef: statsRef, isVisible: statsVisible } = useScrollReveal()

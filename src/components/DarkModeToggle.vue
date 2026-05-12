@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useDarkMode } from '../composables/useDarkMode'
 
+const { t } = useI18n()
 const { isDark, init, toggle } = useDarkMode()
 
 onMounted(() => {
@@ -13,7 +15,7 @@ onMounted(() => {
   <button
     @click="toggle"
     class="flex items-center gap-2 px-2.5 py-1.5 text-xs font-bold transition-all rounded-lg border border-gray-200 text-gray-600 hover:border-indigo-600 hover:text-indigo-600 hover:bg-indigo-50 dark:border-gray-700 dark:text-gray-400 dark:hover:border-indigo-400 dark:hover:text-indigo-400 dark:hover:bg-gray-800 group shadow-sm"
-    :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+    :aria-label="isDark ? t('common.switchToLight') : t('common.switchToDark')"
   >
     <!-- Sun Icon (for light mode) -->
     <svg
@@ -48,7 +50,7 @@ onMounted(() => {
     </svg>
 
     <span class="hidden sm:inline">
-      {{ isDark ? 'DARK' : 'LIGHT' }}
+      {{ isDark ? t('common.dark') : t('common.light') }}
     </span>
   </button>
 </template>

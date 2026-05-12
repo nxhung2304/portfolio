@@ -51,14 +51,17 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import type { Post } from '../lib/database.types'
+
+const { locale } = useI18n()
 
 defineProps<{
   post: Post
 }>()
 
 const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
+  return new Date(dateString).toLocaleDateString(locale.value, {
     year: 'numeric',
     month: 'short',
     day: 'numeric'

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
 import HeroCanvas from '../components/HeroCanvas.vue'
@@ -12,11 +13,11 @@ const { t } = useI18n()
 const { targetRef: heroRef, isVisible: heroVisible } = useScrollReveal()
 
 useHead({
-  title: 'Home | Nguyễn Xuân Hùng - Senior Software Engineer',
+  title: computed(() => t('home.meta.title')),
   meta: [
-    { name: 'description', content: 'Portfolio of Nguyễn Xuân Hùng, a Senior Software Engineer specializing in full-stack development, cloud architecture, and modern web experiences.' },
-    { property: 'og:title', content: 'Nguyễn Xuân Hùng | Senior Software Engineer' },
-    { property: 'og:description', content: 'Explore my projects, blog posts, and technical expertise in building scalable systems.' },
+    { name: 'description', content: computed(() => t('home.meta.description')) },
+    { property: 'og:title', content: computed(() => t('home.meta.title')) },
+    { property: 'og:description', content: computed(() => t('home.meta.description')) },
     { property: 'og:type', content: 'website' },
     { property: 'og:image', content: '/og-image.jpg' },
     { name: 'twitter:card', content: 'summary_large_image' },
